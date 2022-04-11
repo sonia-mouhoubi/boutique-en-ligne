@@ -8,10 +8,10 @@ class User {
     public function __construct() {
         try {
             $this->bdd = new PDO(
-                'mysql:host=localhost; dbname=reservationsalles; charset=utf8',
+                'mysql:host=localhost; dbname=boutique_en_ligne; charset=utf8',
                 'root',
                 '');
-        } catch (PDOexeptiion $e) {
+        } catch (PDOExeption $e) {
             
             die('Erreur :'.$e->getMessage());
         }
