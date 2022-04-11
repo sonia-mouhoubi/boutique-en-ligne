@@ -11,7 +11,8 @@
         <header>
             <nav>
                 <ul>
-                    <li>Accueil</li>
+                    <li><a href="accueil">Accueil</a></li>
+                    <li><a href="inscription">Inscription</a></li>
                     <li>Boutique</li>
                     <li>Inscription</li>
                     <li>Connexion</li>

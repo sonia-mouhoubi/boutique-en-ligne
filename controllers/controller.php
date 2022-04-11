@@ -12,9 +12,12 @@ function msgWelcomeHome()
 function registerUser()
 {
     $user = new User;
-    if(isset($_POST["login"])) {
+    if(isset($_POST['button'])) {
+        if(isset($_POST["login"])) {
         
-        $user->register($_POST["login"], $_POST["password"]);
+            $user->register($_POST["login"], $_POST["password"]);
+
+        }
     }
     require('views/registerView.php');
 }

@@ -1,23 +1,15 @@
 <?php
-class User {
+require('Bdd.php');
+
+class User extends Bdd {
     private $id;
     private $login;
     private $password;
-    private $bdd;
 
-    public function __construct() {
-        try {
-            $this->bdd = new PDO(
-                'mysql:host=localhost; dbname=reservationsalles; charset=utf8',
-                'root',
-                '');
-        } catch (PDOexeptiion $e) {
-            
-            die('Erreur :'.$e->getMessage());
-        }
-    }
+    // public function __construct() {
+       
+    // }
 
-    // Fonction pour enregistrer un nouvel utilisateur
     public function home() {
         echo 'salut';
     }
@@ -29,7 +21,7 @@ class User {
         if(isset($_POST['button'])) {
             // Hachage du mot de passe
             $hashed_password = password_hash($password, PASSWORD_DEFAULT); 
-            $req = $this->bdd->prepare("INSERT INTO `utilisateurs`( `login`, `password`) VALUES (:login,:password)");
+            $req = $this->db->prepare("INSERT INTO `utilisateurs`( `login`, `password`) VALUES (:login,:password)");
             $req->execute(['login'=>$login, 'password'=>$hashed_password]);
         }
     }
