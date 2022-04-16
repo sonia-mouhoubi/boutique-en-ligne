@@ -4,19 +4,36 @@
         <meta charset="utf-8" />
         <title><?= $title ?></title>
         <meta name="description" content="<?= $description ?>">
-        <link href="public/css/style.css" rel="stylesheet" /> 
+        <link href="public/css/styles.css" rel="stylesheet" /> 
     </head>
         
     <body>
         <header>
             <nav>
                 <ul>
-                    <li><a href="accueil">Accueil</a></li>
-                    <li><a href="inscription">Inscription</a></li>
-                    <li>Boutique</li>
-                    <li>Inscription</li>
-                    <li>Connexion</li>
-                    <li>Contact</li>
+                    <li><a href="accueil">My HAIR</a></li>
+                        <li><a href="">Cheveux +</a>
+                            <ul class="deroulant"> 
+                                <li><a href="cheveux-raides">Cheveux raides</a></li>
+                                <li><a href="cheveux-boucles">Cheveux bouclés</a></li>
+                                <li><a href="cheveux-frises">Cheveux frisés</a></li>                            
+                            </ul>
+                        </li>
+                        <li><a href="">Produits +</a>
+                            <ul class="deroulant"> 
+                                <li><a href="shampoing">Shampoing</a></li>
+                                <li><a href="apres-shampoing">Aprés-shampoing</a></li>
+                                <li><a href="soin">Soin</a></li>                            
+                            </ul>
+                        </li>
+                        <li><a href="nouveaute">Nouveauté</a></li>
+                        <li><a href="promotion">Promotion</a></li>
+                        <li><a href="inscription">Inscription</a></li>
+                        <li><a href="connexion">Connexion</a></li>
+                        <li><a href="profil">Profil</a></li>
+                        <li><a href="admin">Admin</a></li>
+                        <li><a href="contact">Contact</a></li>
+                        <li><a href="panier">Panier</a></li>
                 </ul>
             </nav>
         </header>

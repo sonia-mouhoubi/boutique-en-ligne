@@ -1,0 +1,115 @@
+/* ::::::::::::::::::::::::::::::::::::::::::::::: CSS PAR DEFAUT :::::::::::::::::::::::::::::::::::::::::::::::: */
+* {
+	box-sizing : border-box;
+}
+body {
+    scroll-behavior: smooth;
+    line-height: 1.15;
+	margin : 0;
+}
+a {
+	text-decoration : none;
+	font-weight : bold;
+}
+img {
+    max-width: 100%;
+}
+ul {
+    margin: 0;
+}
+li {
+    list-style: none;
+}
+h1, h2, h3, h4, h5 {
+    /* margin: auto; */
+    text-align: center;
+}
+form {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 3em;
+    padding : 2em;  
+    font-weight: bolder;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 15px;
+}
+form label {
+    color : black;
+}
+form input {
+    width: 100%;
+    margin: 2em auto;
+    border-top: black;
+    border-left: transparent;
+    border-right: transparent;
+}
+form input[type="submit"] {
+    width: 50%;
+    font-weight: bolder;
+    font-size: 1rem;
+    background-color: inherit;
+    border: 2px solid black;
+    padding: 0.5rem;   
+    border-radius: 25px; 
+}
+/* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE HEADER :::::::::::::::::::::::::::::::::::::::::::::::: */
+nav {
+    background-color: whitesmoke;
+    padding: 1rem;
+}
+nav ul {
+    width: 100%;
+    padding-left : 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* MENU DEROULANT  */
+.deroulant {
+    padding: 1em 0;
+    display: flex;
+    height: auto;
+    display: none;
+}
+.deroulant li {
+    padding: 1em;
+    margin: 0;
+}
+
+nav > ul li:hover .deroulant{
+    display: block;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ERRORS :::::::::::::::::::::::::::::::::::::::::::::::: */
+
+.section-error404 img {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE PRODUCTS :::::::::::::::::::::::::::::::::::::::::::::::: */
+
+.products h2 {
+    text-align: center;
+    flex-basis: 100%;
+}
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    margin : auto;
+}
+.products div {
+    width: 15vw;
+    height: max-content;
+    padding: 2rem;
+    /* margin: 1rem auto; */
+}
+.products div img {
+    width: auto;
+    height: 25vh;
+    display: block;
+    margin: auto;
+    /* background-color: blue; */
+}

@@ -1,22 +1,46 @@
 <?php
 require('controllers/controller.php');
+require('controllers/backEndController.php');
 
 try {
     // $_GET['url'] = '';
     if (isset($_GET['url'])) {
-      if ($_GET['url'] == 'accueil') {
-            msgWelcomeHome();
+        if ($_GET['url'] == 'accueil') {
+            require('views/homeView.php');
         }
         elseif ($_GET['url'] == 'inscription') {
             registerUser();
         }
+        elseif ($_GET['url'] == 'cheveux-raides') {
+            getProductsStraight();
+        }
+        elseif ($_GET['url'] == 'cheveux-frises') {
+            getProductsCurlyfrizzy();
+        }
+        elseif ($_GET['url'] == 'cheveux-boucles') {
+            getProductsCurly();
+        }
+        elseif ($_GET['url'] == 'shampoing') {
+            getShampoing();
+        }
+        elseif ($_GET['url'] == 'apres-shampoing') {
+            getApresShampoing();
+        }
+        elseif ($_GET['url'] == 'soin') {
+            getSoin();
+        }
+        elseif ($_GET['url'] == 'produit') {
+            getSingleProduct($id);
+        }
+        elseif ($_GET['url'] == 'admin') {
+            registerProduct();      
+        }
         else {
-            echo 'error 404';
+            require('views/error404.php');
         }
     }
     else {
-        msgWelcomeHome();
-        
+        require('views/homeView.php');
     }
 }
 catch(Exception $e) {

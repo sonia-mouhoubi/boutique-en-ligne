@@ -1,7 +1,6 @@
 <?php $title = 'Page inscription'; ?>
 <?php $description = 'Boutique en ligne, page d\'inscription'; ?>
 
-
 <!-- Début du contenu -->
 <?php ob_start(); ?>
 
