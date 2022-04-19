@@ -1,8 +1,11 @@
-<?php $title = 'Ma page d\'accueil'; ?>
-<?php $description = 'Boutique en ligne, page d\'accueil'; ?>
+<?php $title = 'Ma page d\'accueil'; 
+$description = 'Boutique en ligne, page d\'accueil'; 
+// $css = 'public/css/styles.css';
 
-<!-- Permet de mettre pleins de code dans une variable (DEBUT) -->
-<?php ob_start(); ?> 
+// <!-- Permet de mettre pleins de code dans une variable (DEBUT) -->
+ob_start(); 
+?> 
+
 <h1>Ma page d'accueil</h1>
 <p>Mes derniers articles : </p>
 

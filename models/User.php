@@ -1,5 +1,5 @@
 <?php
-require('Bdd.php');
+require_once('Bdd.php');
 
 class User extends Bdd {
     private $id;
@@ -7,6 +7,7 @@ class User extends Bdd {
     private $nom;
     private $mail;
     private $password;
+
 
 
     public function home() {

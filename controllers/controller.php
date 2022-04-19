@@ -1,15 +1,10 @@
 <?php
 // Require de tous les models 
-require('models/User.php');
-require('utility/fonctions.php');
 
-function msgWelcomeHome()
-{
-    $msgWelcomeHom = new User;
-    $msgWelcomeHom->home();
-    require('views/homeView.php');
-}
+require_once('models/User.php');
+require_once('models/Products.php');
 
+// Controller INSCRIPTION
 
 function registerUser()
 {
@@ -126,11 +121,60 @@ function connectUser()
     require('views/connectionView.php');
 }
 
-
-  
-function profileUser()
+// Controller PRODUITS
+function getProductsCurlyfrizzy()
 {
-
-
-    require('views/profileView.php');
+    $products = new Products;
+    $res = $products->getProductsfrizzy();
+    
+    require('views/productsfrizzyView.php');
 }
+
+function getProductsStraight()
+{
+    $products = new Products;
+    $res = $products->getProductsStraight();
+    
+    require('views/productsStraightView.php');
+}
+
+function getProductsCurly()
+{
+    $products = new Products;
+    $res = $products->getProductsCurly();
+    
+    require('views/productsStraightView.php');
+}
+
+function getShampoing()
+{
+    $products = new Products;
+    $res = $products->getProductsfrizzy();
+    
+    require('views/shampoingView.php');
+}
+
+function getApresShampoing()
+{
+    $products = new Products;
+    $res = $products->getApresShampoing();
+    
+    require('views/conditionerView.php');
+}
+
+function getSoin()
+{
+    $products = new Products;
+    $res = $products->getSoin();
+    
+    require('views/soinView.php');
+}
+
+function getSingleProduct($id)
+{
+    $products = new Products;
+    $res = $products->getSingleProduct($id);
+    
+    require('views/singleProductView.php');
+}
+
