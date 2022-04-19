@@ -69,7 +69,7 @@
         <input type="password" name="password" placeholder="Password" id="mot_de_passe">
 
         <label for="nouveauPassword"><i class="fas fa-lock"></i>Nouveau Mot de passe</label>
-        <input type="password" id="nouveauPassword"value="<?= $_SESSION['prenom']['password']?>" name="nouveauPassword">
+        <input type="password" id="nouveauPassword" value="<?= $_SESSION['prenom']['password']?>" name="nouveauPassword">
 
         <input type="submit"  name="modifier" id="button" value="Enregistrer">
     </form>
