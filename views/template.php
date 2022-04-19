@@ -5,6 +5,18 @@
         <title><?= $title ?></title>
         <meta name="description" content="<?= $description ?>">
         <link href="public/css/styles.css" rel="stylesheet" /> 
+
+    <?php 
+    if (isset($_GET['url'])) {
+        if($_GET['url'] == 'admin/ajout-categorie') { ?>
+            <link href="../public/css/styles.css" rel="stylesheet" /> <?php
+        } 
+        else { ?>
+            <link href="../public/css/styles.css" rel="stylesheet" /> <?php
+
+        } 
+    }?>
+
     </head>
         
     <body>
@@ -16,7 +28,7 @@
                             <ul class="deroulant"> 
                                 <li><a href="cheveux-raides">Cheveux raides</a></li>
                                 <li><a href="cheveux-boucles">Cheveux bouclés</a></li>
-                                <li><a href="cheveux-frises">Cheveux frisés</a></li>                            
+                                <li><a href="cheveux-frises">Cheveux crépus</a></li>                            
                             </ul>
                         </li>
                         <li><a href="">Produits +</a>
@@ -27,7 +39,6 @@
                             </ul>
                         </li>
                         <li><a href="nouveaute">Nouveauté</a></li>
-                        <li><a href="promotion">Promotion</a></li>
                         <li><a href="inscription">Inscription</a></li>
                         <li><a href="connexion">Connexion</a></li>
                         <li><a href="profil">Profil</a></li>
@@ -45,7 +56,8 @@
        
         <footer>
             <a href="">Facebook</a>
-            <a href="">Instagram</a>
+            <a href="">Maquette</a>
+            <a href="">Github</a>
         </footer>
     </body>
 </html>

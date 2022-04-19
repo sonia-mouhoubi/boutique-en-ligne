@@ -1,11 +1,13 @@
 <?php 
 $title = 'Page produits'; 
 $description = 'Boutique en ligne, shampoing, aprés-shampoing et soins pour tous types de cheveux.'; 
+$css = 'public/css/styles.css';
 
-ob_start(); ?>
+ob_start(); 
+?>
+
 <section>
-    <?php foreach ($res as $value) { 
-        var_dump($value); ?>
+    <?php foreach ($res as $value) {; ?>
         <h2> Produits de la boutique </h2>
 
         <img src="./public/img/<?= $value['image'] ?>" alt="Nom du produit">

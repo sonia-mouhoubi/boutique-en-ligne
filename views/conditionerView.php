@@ -1,17 +1,18 @@
 <?php 
 $title = 'Page produits'; 
 $description = 'Boutique en ligne, shampoing, aprés-shampoing et soins pour tous types de cheveux.'; 
+$css = 'public/css/styles.css';
+ob_start(); 
+?>
 
-ob_start(); ?>
-
-<section class="produits">
+<section class="products">
     <h2>Aprés-shampoing</h2>
     
     <?php
     foreach ($res as $value) { ?>
     <div>
         <a href="">
-            <img src="./public/img/<?= $value['image'] ?>" alt="Nom du produit">
+            <img src="./public/img/<?= htmlspecialchars($value['image']) ?>" alt="Nom du produit">
             <h3><?= $value['nom_produit']?></h3>
         </a>
         <p><span>Prix TTC </span><?= $value['prixTTC']?> €</p>

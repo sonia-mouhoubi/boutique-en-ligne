@@ -55,7 +55,7 @@ function getApresShampoing()
     $products = new Products;
     $res = $products->getApresShampoing();
     
-    require('views/apresShampoingView.php');
+    require('views/conditionerView.php');
 }
 
 function getSoin()
@@ -73,3 +73,5 @@ function getSingleProduct($id)
     
     require('views/singleProductView.php');
 }
+
+
