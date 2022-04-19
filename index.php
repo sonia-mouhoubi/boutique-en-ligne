@@ -35,6 +35,15 @@ try {
         elseif ($_GET['url'] == 'admin') {
             registerProduct();      
         }
+        elseif ($_GET['url'] == 'admin/ajout-categorie') {
+            require('views/categoryAdminView.php');
+        }
+        elseif ($_GET['url'] == 'admin/ajout-sous-categorie') {
+            require('views/subCategoryAdminView.php');
+        }
+        elseif ($_GET['url'] == 'admin/ajout-produit') {
+            require('views/productAdminView.php');
+        }
         else {
             require('views/error404.php');
         }

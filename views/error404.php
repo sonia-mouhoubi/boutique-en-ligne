@@ -1,8 +1,9 @@
-<?php $title = 'Page de connexion'; ?>
-<?php $description = 'Boutique en ligne, page de connexion'; ?>
+<?php $title = 'Page non trouvée'; ?>
+<?php $description = 'Boutique en ligne, page d\'erreur.'; 
+// $css = 'public/css/styles.css';
 
-<!-- Début du contenu -->
-<?php ob_start(); ?>
+ob_start(); 
+?>
 
 <section class="section-error404">
     <h2>Page non trouvée</h2>
