@@ -26,11 +26,15 @@
 
     <form class="profil" action="#" method="post">
 
-        <label for="prenom">Prenom:<?=$prenom?></label>
-        <input type="text" id="prenom" name="prenom"require pattern="^[a-zA-Z'-]+$" maxlength="20">
+        <label for="prenom">Prenom:</label>
+        <input type="text" value="<?= $_SESSION['user']['prenom'] ?>" id="prenom" name="prenom"require pattern="^[a-zA-Z'-]+$" maxlength="20">
 
-        <label for="nom">Nom:<?=$nom?></label>
-        <input type="text" id="nom" name="nom"require pattern="^[a-zA-Z'-]+$">
+        <label for="nom">Nom:</label>
+        <input type="text" value="<?= $_SESSION['user']['nom'] ?>" id="nom" name="nom"require pattern="^[a-zA-Z'-]+$">
+
+        <label for="nouveauMail">Adresse Mail:</label>
+        <input type="text"  value="<?= $_SESSION['user']['mail'] ?>" id="nouveauMail" name="nouveauMail"
+                require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
 
         <?php if (isset($_SESSION['id-admin'])) { ?>
             <label>&nbsp;</label>
@@ -45,16 +49,14 @@
     <form class="form-coor" action="" method="post">
         
     <label for="prenom">Prenom:</label>
-        <p><?=$_SESSION['Prenom']?></p>
-        <input type="text" id="prenom" name="prenom"require pattern="^[a-zA-Z'-]+$" maxlength="20">
+        <input type="text"  id="prenom" name="prenom"require pattern="^[a-zA-Z'-]+$" maxlength="20">
 
-        <label for="nom">Nom:<?=$nom?></label>
+        <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" require pattern="^[a-zA-Z'-]+$">
 
-        <label for="nouveauMail">Adresse Mail:<?=$mail?></label>
+        <label for="nouveauMail">Adresse Mail:</label>
         <input type="text" id="nouveauMail" name="nouveauMail"
                 require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
-
 
         <input type="submit"  name="modifier" id="button" value="Enregistrer">
     </form>
@@ -69,7 +71,7 @@
         <input type="password" name="password" placeholder="Password" id="mot_de_passe">
 
         <label for="nouveauPassword"><i class="fas fa-lock"></i>Nouveau Mot de passe</label>
-        <input type="password" id="nouveauPassword" value="<?= $_SESSION['prenom']['password']?>" name="nouveauPassword">
+        <input type="password" id="nouveauPassword" name="nouveauPassword">
 
         <input type="submit"  name="modifier" id="button" value="Enregistrer">
     </form>
