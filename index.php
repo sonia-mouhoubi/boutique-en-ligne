@@ -10,6 +10,9 @@ try {
         elseif ($_GET['url'] == 'inscription') {
             registerUser();
         }
+        elseif ($_GET['url'] == 'profil') {
+            profilUser();
+        }
         else {
             echo 'error 404';
         }

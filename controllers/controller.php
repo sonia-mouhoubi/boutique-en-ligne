@@ -22,3 +22,9 @@ function registerUser()
     require('views/registerView.php');
 }
 
+function profilUser(){
+    $profilUser = new User;
+    require('views/profileView.php');
+    
+}
+
