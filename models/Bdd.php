@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 class Bdd {
     protected $db;
 
@@ -6,7 +9,7 @@ class Bdd {
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8', 'root', '');
         }
-        catch (Exception $e)
+        catch (PDOException $e)
         {
             die('Erreur : ' . $e->getMessage());
         }   

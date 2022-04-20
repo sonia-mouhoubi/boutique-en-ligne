@@ -4,6 +4,7 @@ $description = 'Administration du site.';
 
 ob_start();
 ?> 
+
 <nav class="nav-admin">
     <ul>
         <li><a href="admin/ajout-produit">Ajouter un produit</a></li>
