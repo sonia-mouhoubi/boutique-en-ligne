@@ -16,8 +16,8 @@ try {
             connectUser();
         }
         elseif ($_GET['url'] == 'profil') {
-            profileUser();
-
+            // profileUser();
+        }
         elseif ($_GET['url'] == 'cheveux-raides') {
             getProductsStraight();
         }

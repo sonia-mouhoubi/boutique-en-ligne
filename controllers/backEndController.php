@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 // Require de tous les models 
 require_once('models/Products.php');
 
