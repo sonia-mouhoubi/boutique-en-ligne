@@ -1,22 +1,25 @@
 <?php $title = 'Page de connexion'; ?>
-<?php $description = 'Boutique en ligne, page de connexion'; ?>
+<?php $description = 'Boutique en ligne, page de connexion';
+$css = 'public/css/styles.css';
 
-<!-- Début du contenu -->
-<?php ob_start(); ?>
+ob_start(); 
+?>
 
 <section class="section-connexion">
     <h2>Connexion</h2>
 
     <form class="form" action="" method="post">
-        <label for="login">Login</label>
-        <input type="text" id="login" name="login">
         
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password">
+        <label for="mail"><i class="fas fa-user"></i>Mail</label>
+        <input type="text" name="mail" placeholder="mail" id="mail"
+            require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
+        
+        <label for="password"><i class="fas fa-lock"></i>Mot de passe</label>
+        <input type="password" name="password" placeholder="Password" id="mot_de_passe">
 
-        <input type="submit" id="button" name="button">
+        <input type="submit"  name="button" id="button" value="connexion">
         <!-- Message d'erreur -->
-        <!-- <?php $user->error()?> -->
+        <?php //$user->error()?>
     </form>
 </section>
 
@@ -24,3 +27,6 @@
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
+
+
+
