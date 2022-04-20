@@ -3,6 +3,7 @@
 
 require_once('models/User.php');
 require_once('models/Products.php');
+require_once('utility/fonctions.php');
 
 // Controller INSCRIPTION
 
@@ -176,5 +177,11 @@ function getSingleProduct($id)
     $res = $products->getSingleProduct($id);
     
     require('views/singleProductView.php');
+}
+
+function profilUser(){
+    $profilUser = new User;
+    require('views/profileView.php');
+    
 }
 
