@@ -6,22 +6,29 @@ body {
     scroll-behavior: smooth;
     line-height: 1.15;
 	margin : 0;
+    padding: 0;
+}
+main {
+    min-height: 90vh;
 }
 a {
 	text-decoration : none;
 	font-weight : bold;
+    color: black;
+    font-weight: bolder;
 }
 img {
     max-width: 100%;
 }
 ul {
     margin: 0;
+    padding: 0;
 }
 li {
     list-style: none;
 }
 h1, h2, h3, h4, h5 {
-    /* margin: auto; */
+    padding: 3rem;
     text-align: center;
 }
 form {
@@ -53,18 +60,21 @@ form input[type="submit"] {
     padding: 0.5rem;   
     border-radius: 25px; 
 }
+
 /* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE HEADER :::::::::::::::::::::::::::::::::::::::::::::::: */
-nav {
+header {
+    z-index: 10;
+    /* position: fixed; */
     background-color: whitesmoke;
     padding: 1rem;
+    width: 100%;  
 }
-nav ul {
+.nav ul:not(.deroulant){
     width: 100%;
     padding-left : 0;
     display: flex;
     justify-content: space-around;
 }
-
 /* MENU DEROULANT  */
 .deroulant {
     padding: 1em 0;
@@ -76,13 +86,16 @@ nav ul {
     padding: 1em;
     margin: 0;
 }
-
-nav > ul li:hover .deroulant{
+.nav > ul li:hover .deroulant{
     display: block;
 }
-
+footer {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem;
+}
 /* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ERRORS :::::::::::::::::::::::::::::::::::::::::::::::: */
-
 .section-error404 img {
     display: block;
     width: 50%;
@@ -90,7 +103,6 @@ nav > ul li:hover .deroulant{
 }
 
 /* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE PRODUCTS :::::::::::::::::::::::::::::::::::::::::::::::: */
-
 .products h2 {
     text-align: center;
     flex-basis: 100%;
@@ -113,3 +125,38 @@ nav > ul li:hover .deroulant{
     margin: auto;
     /* background-color: blue; */
 }
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ADMIN :::::::::::::::::::::::::::::::::::::::::::::::: */
+.nav-admin {
+    /* z-index: -5; */
+    background-color: whitesmoke;
+    width: 15vw;
+    height: 100vh;
+    position: fixed;
+    top : 0;
+}
+.nav-admin a {
+    /* z-index: 3; */
+}
+.nav-admin ul {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav-admin li {
+    margin: 1rem;
+    text-align: center;
+}
+.administration  {
+    width: 85vw;
+    padding-top: 5rem;
+    margin-left: 15vw;
+    text-align: center;
+}
+/* .administration h2 {
+    width: 85vw;
+    margin-top: 5rem;
+    margin-left: 15vw;
+    text-align: center;
+} */

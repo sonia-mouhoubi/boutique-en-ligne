@@ -33,7 +33,10 @@ try {
             getSingleProduct($id);
         }
         elseif ($_GET['url'] == 'admin') {
-            registerProduct();      
+            registerProduct();   
+            if ($_GET['url'] == 'admin/ajout-categorie') {
+                require('views/categoryAdminView.php');
+            }   
         }
         elseif ($_GET['url'] == 'admin/ajout-categorie') {
             require('views/categoryAdminView.php');
