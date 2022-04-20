@@ -7,9 +7,10 @@ class User extends Bdd {
     private $nom;
     private $mail;
     private $password;
+    private $bdd;
 
 
-
+    // Fonction pour enregistrer un nouvel utilisateur
     public function home() {
         echo 'salut';
     }
