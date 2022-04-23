@@ -38,13 +38,14 @@
                             <li><a href="/projectpool2/boutique-en-ligne/soin">Soin</a></li>                            
                         </ul>
                     </li>
-                    <li><a href="/projectpool2/boutique-en-ligne/nouveaute">Nouveauté</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/inscription">Inscription</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/connexion">Connexion</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/profil">Profil</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/admin/ajout-sous-categorie">Admin</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/contact">Contact</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/panier">Panier</a></li>
+                    <li><a href="nouveaute">Nouveauté</a></li>
+                    <li><a href="tous-les-produits">Tous les produits</a></li>
+                    <li><a href="inscription">Inscription</a></li>
+                    <li><a href="connexion">Connexion</a></li>
+                    <li><a href="profil">Profil</a></li>
+                    <li><a href="admin">Admin</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="panier">Panier</a></li>
                 </ul>
             </nav>
         </header>
