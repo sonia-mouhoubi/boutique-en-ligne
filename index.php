@@ -1,7 +1,10 @@
 <?php
+
+// define()
+
 require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
-
+// var_dump($_SERVER);
 try {
     // $_GET['url'] = '';
     if (isset($_GET['url'])) {
@@ -11,11 +14,9 @@ try {
         elseif ($_GET['url'] == 'inscription') {
             registerUser();
         }
-
         elseif ($_GET['url'] == 'connexion') {
             connectUser();
         }
-
         // elseif ($_GET['url'] == 'profil') {
         //     profileUser();
         // }
@@ -43,21 +44,30 @@ try {
         }
         elseif ($_GET['url'] == 'produit') {
             getSingleProduct($id);
-        }
+        } 
         elseif ($_GET['url'] == 'admin') {
+            getAdmin();
+        }   
+        elseif ($_GET['url'] == 'admin/ajout-produit') {
             registerProduct();   
-            if ($_GET['url'] == 'admin/ajout-categorie') {
-                require('views/categoryAdminView.php');
-            }   
         }
         elseif ($_GET['url'] == 'admin/ajout-categorie') {
-            require('views/categoryAdminView.php');
+            registerNewCategory();   
         }
         elseif ($_GET['url'] == 'admin/ajout-sous-categorie') {
-            require('views/subCategoryAdminView.php');
+            registerNewSubCategory();
         }
-        elseif ($_GET['url'] == 'admin/ajout-produit') {
-            require('views/productAdminView.php');
+        elseif ($_GET['url'] == 'admin/produit') {
+            getProduct();
+        }
+        elseif ($_GET['url'] == 'admin/categorie') {
+            getCategory();
+        }
+        elseif ($_GET['url'] == 'admin/sous-categorie') {
+            getSubCategory();
+        }
+        elseif ($_GET['url'] == "admin/modification-produit/") {
+            updateProduct();
         }
         else {
             require('views/error404.php');

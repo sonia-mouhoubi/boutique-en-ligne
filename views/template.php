@@ -23,19 +23,19 @@
         <header>
             <nav class="nav">
                 <ul>
-                    <li><a href="accueil">My HAIR</a></li>
+                    <li><a href="/projectpool2/boutique-en-ligne/accueil">My HAIR</a></li>
                     <li><a href="">Cheveux +</a>
                         <ul class="deroulant"> 
-                            <li><a href="cheveux-raides">Cheveux raides</a></li>
-                            <li><a href="cheveux-boucles">Cheveux bouclés</a></li>
-                            <li><a href="cheveux-frises">Cheveux crépus</a></li>                            
+                            <li><a href="/projectpool2/boutique-en-ligne/cheveux-raides">Cheveux raides</a></li>
+                            <li><a href="/projectpool2/boutique-en-ligne/cheveux-boucles">Cheveux bouclés</a></li>
+                            <li><a href="/projectpool2/boutique-en-ligne/cheveux-frises">Cheveux crépus</a></li>                            
                         </ul>
                     </li>
                     <li><a href="">Produits +</a>
                         <ul class="deroulant"> 
-                            <li><a href="shampoing">Shampoing</a></li>
-                            <li><a href="apres-shampoing">Aprés-shampoing</a></li>
-                            <li><a href="soin">Soin</a></li>                            
+                            <li><a href="/projectpool2/boutique-en-ligne/shampoing">Shampoing</a></li>
+                            <li><a href="/projectpool2/boutique-en-ligne/apres-shampoing">Aprés-shampoing</a></li>
+                            <li><a href="/projectpool2/boutique-en-ligne/soin">Soin</a></li>                            
                         </ul>
                     </li>
                     <li><a href="nouveaute">Nouveauté</a></li>
@@ -58,7 +58,7 @@
         <footer>
             <a href="">Facebook</a>
             <a href="">Maquette</a>
-            <a href="">Github</a>
+            <a href="https://github.com/sonia-mouhoubi/boutique-en-ligne">Github</a>
         </footer>
     </body>
 </html>

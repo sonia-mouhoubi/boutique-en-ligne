@@ -1,7 +1,7 @@
 <?php
  ob_start(); 
 ?>
-<div>
+<section class="">
     <h3>Ajouter une nouvelle sous-catégorie</h3>
 
     <form method="post" enctype="multipart/form-data" action="">
@@ -11,7 +11,7 @@
 
         <input type="submit" name="register" value="Enregistrer">
     </form>
-</div>
+</section>
 
 <?php $contentsubcategory = ob_get_clean(); 
 require('adminView.php'); ?>

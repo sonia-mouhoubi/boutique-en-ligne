@@ -2,8 +2,13 @@
 // session_start();
 // Require de tous les models 
 require_once('models/Products.php');
+require_once('models/Category.php');
 
-// Controller ADMIN PRODUIT
+function getAdmin() {
+    require('views/adminView.php');
+}
+
+// ********************* Enregistrement produits, catégories, sous-catégories *******************
 function registerProduct()
 {
     // Afficher les catégories et sous catégories dans le formulaire.
@@ -13,7 +18,6 @@ function registerProduct()
     $resCat = $category->getCategory(); 
     $resSubCat = $category->getSubCategory();
     $message = $products->message();
-  
 
     if(isset($_POST['register']))
     {
@@ -24,7 +28,7 @@ function registerProduct()
                 if($_FILES['image']['error']> 0)
                 {
                     // throw new Exception('Une erreur est survenue lors du transfert.');
-                    $_SESSION['msg'] = "<p>Une erreur est survenue lors du transfert.</p>";
+                    $_SESSION['msg'] = "Une erreur est survenue lors du transfert.";
 
                 }
 
@@ -59,15 +63,15 @@ function registerProduct()
                 
                         if(!empty($_POST['nameProduct']) && !empty($_POST['description']) && !empty($_FILES['image']) && !empty($_POST['priceHT']) && !empty($_POST['TVA']) && !empty($_POST['priceTTC']) && !empty($_POST['formats']) && !empty($_POST['stock']) && !empty($_POST['idCategory']) && !empty($_POST['idSubCategory'])) 
                         {
-                            $resCatbyId = $products->getCategorybyId($_POST['idCategory']);
+                            $resCatbyName = $category->getCategorybyName($_POST['idCategory']);
                            
-                            $_POST['idCategory'] = $resCatbyId[0]['id_categorie'];
-                            var_dump($_POST['idCategory']);
+                            $_POST['idCategory'] = $resCatbyName[0]['id_categorie'];
+                            // var_dump($_POST['idCategory']);
 
-                            $resSubCatbyId = $products->getSubCategorybyId($_POST['idSubCategory']);
+                            $resSubCatbyName = $category->getSubCategorybyName($_POST['idSubCategory']);
 
-                            $_POST['idSubCategory'] = $resSubCatbyId[0]['id_sous_categorie'];
-                            var_dump($_POST['idSubCategory']);
+                            $_POST['idSubCategory'] = $resSubCatbyName[0]['id_sous_categorie'];
+                            // var_dump($_POST['idSubCategory']);
 
                             // Enregistrement du produits
                             $products->registerProduct($_POST['nameProduct'], $_POST['description'], $image, $_POST['priceHT'], $_POST['TVA'], $_POST['priceTTC'], $_POST['formats'], $_POST['stock'], $_POST['idCategory'], $_POST['idSubCategory']);   
@@ -77,22 +81,77 @@ function registerProduct()
                         }
                 }
     }
+
+    if(isset($_POST['register']))
+    {
+        $category = new Category;
+        $category->registerNewCategory($_POST['newCategory']);
+    }
     
-    require('views/adminView.php');
+    require('views/productAdminView.php');
 }
 
 function registerNewCategory() {
-    $category = new Category;
-    $category->registerNewCategory($_POST['newCategory']);
+    if(isset($_POST['register']))
+    {
+        $category = new Category;
+        $category->registerNewCategory($_POST['newCategory']);
+    }
+    require('views/categoryAdminView.php');
+}
 
-    require('views/adminView.php');
-}
 function registerNewSubCategory() {
-    $category = new Category;
-    $category->registerNewCategory($_POST['newCategory']);
-    
-    require('views/adminView.php');
+    if(isset($_POST['register']))
+    {
+        $category = new Category;
+        $category->registerNewSubCategory($_POST['newSubCategory']);
+    }
+    require('views/subCategoryAdminView.php');
 }
+
+// ********************* Affichage produits, catégories, sous-catégories *******************
+
+function getProduct() {
+    $products = new Products;
+    $res = $products->getProduct();
+        
+    require('views/tableProductView.php');
+}
+
+function getCategory() {
+    $category = new Category;
+    $resCat = $category->getCategory();
+    $resSubCat = $category->getCategorySubCategory();
+
+    require('views/tableCategoryView.php');
+}
+
+function getSubCategory() {
+    $category = new Category;
+    $resSubCat = $category->getCategorySubCategory();
+    // $resSubCat = $category->getSubCategory();
+    $resCat = $category->getCategory();
+  
+    require('views/tableSubCategoryView.php');
+}
+
+// ********************* Modifications produits, catégories, sous-catégories *******************
+
+function updateProduct() {
+    $products = new Products;
+    // $res = $products->getProduct();
+  
+    $resProduct = $products->getProductByID($_GET['url']);
+    // if(isset($_POST['register']))
+    // {
+    //     $products->updateProduct($_POST['nameProduct'], $_POST['description'], $_FILES['image'], $_POST['priceHT'], $_POST['TVA'], $_POST['priceTTC'], $_POST['formats'], $_POST['stock'], $_POST['idCategory'], $_POST['idSubCategory']);
+
+    // }
+
+    require('views/formUpdateProductView.php');
+}
+
+
 
 
 

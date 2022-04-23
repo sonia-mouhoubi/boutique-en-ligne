@@ -1,14 +1,14 @@
 <?php
-ob_start(); 
- 
+ ob_start(); 
+ var_dump($res);
 ?>
 <section class="form-product">
-    <h3>Ajouter une nouveau produit</h3>
+    <h3>Modifier le produit</h3>
 
     <form method="post" enctype="multipart/form-data" action="">
         <fieldset>
             <label for="nameProduct">Nom du produit</label>
-            <input type="text" id="product" name="nameProduct" placeholder="Nom de produit">
+            <input type="text" id="product" name="nameProduct" placeholder="Nom de produit" value="">
 
             <label for="description">Description</label>
             <textarea name="description" id="description" placeholder="Description du produit"></textarea>
@@ -60,7 +60,5 @@ ob_start();
     </form>
 </section>
 
-<?php $contentproduct = ob_get_clean(); 
-
-require('adminView.php');
-?>
+<?php $contentupdateproduct = ob_get_clean(); 
+require('adminView.php'); ?>

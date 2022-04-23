@@ -28,11 +28,11 @@ li {
     list-style: none;
 }
 h1, h2, h3, h4, h5 {
-    padding: 3rem;
+    padding: 1rem;
     text-align: center;
 }
 form {
-    width: 50%;
+    width: 90%;
     margin: auto;
     margin-bottom: 3em;
     padding : 2em;  
@@ -45,14 +45,13 @@ form label {
     color : black;
 }
 form input {
-    width: 100%;
+    width: 30%;
     margin: 2em auto;
     border-top: black;
     border-left: transparent;
     border-right: transparent;
 }
 form input[type="submit"] {
-    width: 50%;
     font-weight: bolder;
     font-size: 1rem;
     background-color: inherit;
@@ -61,10 +60,14 @@ form input[type="submit"] {
     border-radius: 25px; 
 }
 
+form select {
+    margin: 0.5rem;
+}
+
 /* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE HEADER :::::::::::::::::::::::::::::::::::::::::::::::: */
 header {
+    position: sticky;
     z-index: 10;
-    /* position: fixed; */
     background-color: whitesmoke;
     padding: 1rem;
     width: 100%;  
@@ -127,16 +130,17 @@ footer {
 }
 
 /* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ADMIN :::::::::::::::::::::::::::::::::::::::::::::::: */
+.administration  {
+    margin-left: 15vw;
+    text-align: center;
+}
 .nav-admin {
-    /* z-index: -5; */
     background-color: whitesmoke;
     width: 15vw;
     height: 100vh;
     position: fixed;
+    z-index: 0;
     top : 0;
-}
-.nav-admin a {
-    /* z-index: 3; */
 }
 .nav-admin ul {
     height: 100vh;
@@ -148,15 +152,101 @@ footer {
     margin: 1rem;
     text-align: center;
 }
-.administration  {
-    width: 85vw;
-    padding-top: 5rem;
-    margin-left: 15vw;
+table {
+    display: table;
+    border-collapse: collapse; 
+    font-size: small;
+    margin: 1rem auto;
+}
+thead th {
+    width: 10em;
+    background-color: #131413;
+    color: white;
+    padding: 1em 0;
+}
+thead td {
+    background-color: #131413;
+    color: white;
+}
+th, td {
+    border : 2px solid #1d1801;
+    border-collapse: collapse; 
     text-align: center;
 }
-/* .administration h2 {
-    width: 85vw;
-    margin-top: 5rem;
-    margin-left: 15vw;
-    text-align: center;
+td {
+    padding: 0.7em 1em;
+}
+tbody th {
+    font-family: cursive;
+    padding: 1em;
+    background-color: #131413;
+    color: white;
+}
+/* tbody td {
+    font-size: 1.3em;
 } */
+
+/*============================================== AFFICHAGE produit front Admin  ========================================*/
+.productAdmin {
+    overflow-x: scroll;
+}
+.productAdmin thead th:nth-child(1) {
+    width: 15%;
+}
+.productAdmin thead th:nth-child(2) {
+    width: 20%;
+}
+.productAdmin thead th:nth-child(3)  {
+    width: 10%;
+}
+.productAdmin thead th:nth-child(11), .productAdmin thead th:nth-child(12)  {
+    width: 5%;
+}
+
+.productAdmin table {
+    margin : 1rem 1rem;
+}
+
+/*============================================== AFFICHAGE CATEGORIE front Admin  ========================================*/
+.category td:nth-child(1) {
+    background-color: gray;
+    color: white;
+}
+.category th:nth-child(1) {
+    background-color: rgb(44, 42, 42);
+    color: white;
+}
+
+/*============================================== FORMULAIRE produit Admin  ========================================*/
+.form-product form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+.form-product select {
+    width: 6rem;
+}
+.form-product fieldset {
+    margin: 2px;
+}
+.form-product fieldset:nth-child(1) {
+    flex-basis: 50%;
+}
+.form-product fieldset:first-child label {
+    display: block;
+}
+.form-product fieldset:first-child input {
+    width: 90%;
+    display: block;
+}
+form textarea {
+    width: 90%;
+    height: 5rem;
+    margin: 1rem auto;
+}
+.form-product fieldset:nth-child(2){
+    flex-basis: 40%;
+}
+.form-product fieldset:nth-child(3){
+    flex-basis: 90%;
+}
