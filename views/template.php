@@ -39,6 +39,7 @@
                         </ul>
                     </li>
                     <li><a href="nouveaute">Nouveauté</a></li>
+                    <li><a href="tous-les-produits">Tous les produits</a></li>
                     <li><a href="inscription">Inscription</a></li>
                     <li><a href="connexion">Connexion</a></li>
                     <li><a href="profil">Profil</a></li>

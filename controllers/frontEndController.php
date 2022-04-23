@@ -6,7 +6,7 @@ require_once('models/Products.php');
 require_once('utility/fonctions.php');
 
 // Controller INSCRIPTION
-
+ 
 function registerUser()
 {
     $user = new User;
@@ -184,4 +184,17 @@ function profilUser(){
     require('views/profileView.php');
     
 }
+
+//pagination + affichage de tous les produits
+function total_number_articles(){
+    $allProducts = new Products;
+   
+    // var_dump($res);
+
+
+   
+    require('views/allProductsView.php');
+}
+
+
 

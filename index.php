@@ -1,5 +1,5 @@
 <?php
-require('controllers/controller.php');
+require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
 
 try {
@@ -19,6 +19,9 @@ try {
         // elseif ($_GET['url'] == 'profil') {
         //     profileUser();
         // }
+        elseif ($_GET['url'] == 'tous-les-produits') {
+            total_number_articles();
+        }
         elseif ($_GET['url'] == 'cheveux-raides'){
 
             getProductsStraight();
