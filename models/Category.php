@@ -8,6 +8,9 @@ class Category extends Bdd {
     private $newSubCategory;
     private $idCategory;
     private $idSubCategory;
+    private $nameCategory;
+    private $nameSubCategory;
+
 
     // public function __construct() {
        
@@ -20,6 +23,7 @@ class Category extends Bdd {
 
         return $resCat;
     }
+
 // Pour FORM PRODUIT Idem pour les sous-catégories
     public function getSubCategory() {
         $req = $this->db->prepare("SELECT * FROM `sous_categorie`");
@@ -28,54 +32,29 @@ class Category extends Bdd {
 
         return $resSubCat;
     }
+
 // Pour FORM PRODUIT afin d'insérer l'id de la catégorie
-    public function getCategorybyId($idCategory) {
-        $this->idCategory = $idCategory;
+    public function getCategorybyName($nameCategory) {
+        $this->nameCategory = $nameCategory;
 
-        $req = $this->db->prepare("SELECT *FROM `categorie` WHERE type_de_cheveux = ?");
-        $req->execute([$idCategory]);
-        $resCatbyId = $req->fetchAll(PDO::FETCH_ASSOC);   
+        $req = $this->db->prepare("SELECT * FROM `categorie` WHERE type_de_cheveux = ?");
+        $req->execute([$nameCategory]);
+        $resCatbyName = $req->fetchAll(PDO::FETCH_ASSOC);   
 
-        return $resCatbyId;
+        return $resCatbyName;
     }
+
 // Pour FORM PRODUIT idem pour sous-catégories
-    public function getSubCategorybyId($idSubCategory) {
-        $this->idSubCategory = $idSubCategory;
+    public function getSubCategorybyName($nameSubCategory) {
+        $this->nameSubCategory = $nameSubCategory;
 
         $req = $this->db->prepare("SELECT * FROM `sous_categorie` WHERE nom_du_produit = ?");
-        $req->execute([$idSubCategory]);
-        $resCatbyId = $req->fetchAll(PDO::FETCH_ASSOC);   
+        $req->execute([$nameSubCategory]);
+        $resSubCatbyName = $req->fetchAll(PDO::FETCH_ASSOC);   
 
-
-        return $resCatbyId;
+        return $resSubCatbyName;
     }
 
-
-    // public function getMaxIdCategory() {
-    //     $req = $this->db->prepare("SELECT id_categorie FROM categorie WHERE id_categorie=(SELECT max(id_categorie) FROM categorie)");
-    //     $req->execute();
-    //     $resCat = $req->fetchAll(PDO::FETCH_ASSOC);   
-
-    //     return $resCat;
-    // }
-
-    // public function registerMaxIdCategory($id_category) {
-    //     $this->id_category = $id_category;      
-
-    //     $req2 = $this->db->prepare("INSERT INTO categorie (id_categorie) VALUES (?)");
-    //     $req2->execute([$id_category]);
-
-    // }
-
-    // ********************************** produits coté BACK ************************
-    // public function registerCategory($category) { 
-    //     $this->category = $category;      
-
-    //     $req2 = $this->db->prepare("INSERT INTO categorie (type_de_cheveux) VALUES (?)");
-    //     $req2->execute([$category]);
-    // }
-    
-    
     public function registerNewCategory($newCategory) { 
         $this->newCategory = $newCategory;      
 
@@ -90,6 +69,25 @@ class Category extends Bdd {
         $req->execute([$newSubcategory]);
     }
 
+    public function getCategorySubCategory() {
+        $req = $this->db->prepare("SELECT id_sous_categorie, nom_du_produit FROM sous_categorie INNER JOIN categorie ON sous_categorie.id_sous_categorie = categorie.id_categorie
+        ");
+        $req->execute();
+        $resSousCat = $req->fetchAll(PDO::FETCH_ASSOC);   
+
+        return $resSousCat;
+    }
+
+    // public function getNameCategoryById($idCategory) 
+    // {
+    //     $this->idCategory = $idCategory;
+
+    //     $req = $this->db->prepare("SELECT type_de_cheveux FROM `categorie` WHERE id_categorie = ?");
+    //     $req->execute([$idCategory]);
+    //     $resNameCat = $req->fetchAll(PDO::FETCH_ASSOC);   
+
+    //     return $resNameCat;
+    // }
 }
 ?>
 

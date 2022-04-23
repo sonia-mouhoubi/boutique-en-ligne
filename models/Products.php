@@ -6,6 +6,7 @@ require_once('Category.php');
 
 
 class Products extends Category {
+    private $idProduct;
     private $nameProduct;
     private $description;
     private $image;
@@ -16,7 +17,6 @@ class Products extends Category {
     private $stock;
     private $idCategory;
     private $idSubCategory;
-
 
     // public function __construct() {
        
@@ -31,6 +31,14 @@ class Products extends Category {
     } 
 
     // ********************************** Affichage produit coté FRONT ************************
+    public function getProduct() {   
+        $req = $this->db->prepare("SELECT * FROM `produit` INNER JOIN categorie ON produit.id_categorie = categorie.id_categorie INNER JOIN sous_categorie ON produit.id_sous_categorie = sous_categorie.id_sous_categorie ORDER BY `produit`.`id_produit` DESC");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC);   
+
+        return $res;
+    } 
+
     public function getProductsfrizzy() {   
         $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 1");
         $req->execute();
@@ -56,16 +64,16 @@ class Products extends Category {
         return $res;
     } 
 
-    public function getSingleProduct($id) 
-    {   
-        $this->id = $id;
+    // public function getSingleProduct($id) 
+    // {   
+    //     $this->id = $id;
 
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_produit= ?");
-        $req->execute([$id]);
-        $res = $req->fetch(PDO::FETCH_ASSOC);   
+    //     $req = $this->db->prepare("SELECT * FROM produit WHERE id_produit= ?");
+    //     $req->execute([$id]);
+    //     $res = $req->fetch(PDO::FETCH_ASSOC);   
 
-        return $res;
-    } 
+    //     return $res;
+    // } 
 
     public function getShampoing() 
     {   
@@ -96,23 +104,6 @@ class Products extends Category {
     
   // ********************************** Affichage produit coté BACK ************************
 
-    // public function getCategory() {
-    //     $req = $this->db->prepare("SELECT * FROM `categorie`");
-    //     $req->execute();
-    //     $resCat = $req->fetchAll(PDO::FETCH_ASSOC);   
-
-    //     return $resCat;
-    // }
-
-    // public function getSubCategory() {
-    //     $req = $this->db->prepare("SELECT * FROM `sous_categorie`");
-    //     $req->execute();
-    //     $resSubCat = $req->fetchAll(PDO::FETCH_ASSOC);   
-
-    //     return $resSubCat;
-    // }
-
-    
     public function registerProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory) { 
         $this->nameProduct = $nameProduct;
         $this->description = $description; 
@@ -129,35 +120,31 @@ class Products extends Category {
         $req->execute(['nom_produit'=>$nameProduct, 'description'=>$description, 'image'=>$image, 'prixHT'=>$priceHT, 'tauxTVA'=>$TVA, 'prixTTC'=>$priceTTC, 'formats'=>$formats, 'stock'=>$stock, 'id_categorie'=>$idCategory, 'id_sous_categorie'=>$idSubCategory]);
     }
 
-    // public function registerNewCategory($newCategory) { 
-    //     $this->newCategory = $newCategory;      
+  // ********************************** Modification du produits*
 
-    //     $req = $this->db->prepare("INSERT INTO categorie (type_de_cheveux) VALUES (?)");
-    //     $req->execute([$newCategory]);
-    // }
+  public function getProductByID($idProduct) {   
+    $req = $this->db->prepare("SELECT * FROM `produit` INNER JOIN categorie ON produit.id_categorie = categorie.id_categorie INNER JOIN sous_categorie ON produit.id_sous_categorie = sous_categorie.id_sous_categorie WHERE id_produit = ?");
+    $req->execute();
+    $resProduct = $req->fetchAll(PDO::FETCH_ASSOC);   
 
-    // public function registerSubCategory($newSubcategory) { 
-    //     $this->newSubcategory = $newSubcategory;      
+    return $resProduct;
+} 
 
-    //     $req = $this->db->prepare("INSERT INTO sous_categorie (nom_du_produit) VALUES (?)");
-    //     $req->execute([$newSubcategory]);
-    // }
+    public function updateProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory) { 
+        $this->nameProduct = $nameProduct;
+        $this->description = $description; 
+        $this->image = $image;  
+        $this->priceHT = $priceHT; 
+        $this->TVA = $TVA;
+        $this->priceTTC = $priceHT;    
+        $this->formats = $formats;         
+        $this->stock = $stock;    
+        $this->idCategory = $idCategory;    
+        $this->idSubCategory = $idSubCategory;      
 
-    // public function registerProductNewCat($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $newCategory, $newSubCategory) { 
-    //     $this->nameProduct = $nameProduct;
-    //     $this->description = $description; 
-    //     $this->image = $image;  
-    //     $this->priceHT = $priceHT; 
-    //     $this->TVA = $TVA;
-    //     $this->priceTTC = $priceHT;    
-    //     $this->formats = $formats;         
-    //     $this->stock = $stock;    
-    //     $this->newCategory = $newCategory;    
-    //     $this->subCategory = $newSubCategory;      
-
-    //     $req = $this->db->prepare("INSERT INTO produit (nom_produit, description, image, prixHT, tauxTVA, prixTTC, formats, stock, id_categorie, id_sous_categorie) VALUES (:nom_produit, :description, :image, :prixHT, :tauxTVA, :prixTTC, :formats, :stock, :id_categorie, :id_sous_categorie)");
-    //     $req->execute(['nom_produit'=>$nameProduct, 'description'=>$description, 'image'=>$image, 'prixHT'=>$priceHT, 'tauxTVA'=>$TVA, 'prixTTC'=>$priceTTC, 'formats'=>$formats, 'stock'=>$stock, 'id_categorie'=>$newCategory, 'id_sous_categorie'=>$newSubCategory]);
-    // }
+        $req = $this->db->prepare("UPDATE `produit` SET `id_produit`=?,`nom_produit`=?,`description`=?,`image`=?,`prixHT`=?,`tauxTVA`=?,`prixTTC`=?,`formats`=?,`stock`=?,`id_categorie`=?,`id_sous_categorie`=? WHERE id_produit");
+        $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory]);
+    }
 }
 ?>
 
