@@ -6,7 +6,7 @@ require_once('models/Products.php');
 require_once('utility/fonctions.php');
 
 // Controller INSCRIPTION
-
+ 
 function registerUser()
 {
     $user = new User;
@@ -171,17 +171,56 @@ function getSoin()
     require('views/soinView.php');
 }
 
-function getSingleProduct($id)
-{
-    $products = new Products;
-    $res = $products->getSingleProduct($id);
+// function getSingleProduct($id)
+// {
+//     $products = new Products;
+//     $res = $products->getSingleProduct($id);
     
-    require('views/singleProductView.php');
-}
+//     require('views/singleProductView.php');
+// }
 
 function profilUser(){
     $profilUser = new User;
     require('views/profileView.php');
     
 }
+
+//pagination + affichage de tous les produits
+function total_number_articles(){
+    $allProducts = new Products;
+    $products = $allProducts->allProducts();
+    // var_dump($products);
+
+    //TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
+    // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre
+    // // On détermine sur quelle page on se trouve
+    //     if(isset($_GET['page']) && !empty($_GET['page'])){
+    //         $currentPage = (int)($_GET['page']);
+    //     }else{
+    //         $currentPage = 1;
+    //         var_dump($currentPage);
+    //     }
+
+    //     $nbArticles = $allProducts->total_number_articles();
+    //     // var_dump($nbArticles);
+
+    //     // On détermine le nombre d'articles par page
+    //     $parPage = 2;
+
+    //     // On calcule le nombre de pages total
+    //     $pages = ceil($nbArticles / $parPage);
+
+    //     // Calcul du 1er article de la page
+    //     $premier = ($currentPage * $parPage) - $parPage;
+    //     // var_dump($premier);
+    //     $get_page = $allProducts->get_by_page($premier,$parPage);
+    //     var_dump($get_page);
+        
+
+
+   
+    require('views/allProductsView.php');
+}
+
+
 
