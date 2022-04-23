@@ -17,6 +17,8 @@ class Products extends Category {
     private $stock;
     private $idCategory;
     private $idSubCategory;
+    private $first;
+    private $bypage;
 
     // public function __construct() {
        
@@ -102,18 +104,16 @@ class Products extends Category {
         return $res;
     } 
 
-    //PAGINATION
-    //  public function allProducts()
-    // {
-    //     $req = $this->db->prepare("SELECT * FROM produit");
-    //     $req->execute();
-    //     $res = $req->fetchAll(PDO::FETCH_ASSOC); 
+     public function allProducts()
+    {
+        $req = $this->db->prepare("SELECT * FROM produit");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC); 
 
-    //     return $res;
-    // }
+        return $res;
+    }
     
     //(1/2) On détermine le nombre total d'articles 
-    //==>PAGE ARTICLES.PHP ==> PAGINATION
     public function total_number_articles()
     {
         // On détermine le nombre total d'articles
@@ -132,16 +132,16 @@ class Products extends Category {
     }
     
     //(2/2)le nombre d'articles par page 
-    //==>PAGE ARTICLES.PHP  ==> PAGINATION
     public function get_by_page($first, $bypage)
     {
-        $sql = 'SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT :premier, :parpage;';
+        $this->first = $first;      
+        $this->bypage = $bypage;      
+
+        $sql = "SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT  $first, $bypage";
         // On prépare la requête
         $query = $this->db->prepare($sql);
-        $query->bindValue(':premier', $first, PDO::PARAM_INT);
-        $query->bindValue(':parpage', $bypage, PDO::PARAM_INT);
         // On exécute
-        $query->execute();
+        $query->execute([$first, $bypage]);
         // On récupère les valeurs dans un tableau associatif
         $articles = $query->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($articles);
