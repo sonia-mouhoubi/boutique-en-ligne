@@ -171,18 +171,49 @@ function getSoin()
     require('views/soinView.php');
 }
 
-// function getSingleProduct($id)
-// {
-//     $products = new Products;
-//     $res = $products->getSingleProduct($id);
+function getSingleProduct($id)
+{
+    $products = new Products;
+    // $singleprod = $products->getSingleProduct($id);
+
+    if(isset($_GET['id']) AND !empty($_GET['id']))
+    {
+        $getId = htmlspecialchars($_GET['id']);
+        $getId = (int)($_GET['id']);
+        $singleProduct = $products->getSingleProduct($getId);
+        // var_dump($singleProduct);
+
+        $countArt  = $products->countSingleProdu($getId);
+        // var_dump($countArt);
+        $countArt = (int)$countArt;
+        // var_dump($countArt);
+
+        //vérifie si l'article existe bien
+        if($countArt == 1)
+        {       
+            $nomProduit =  $singleProduct['nom_produit'];
+            $image =  $singleProduct['image'];
+            $description =  $singleProduct['description'];
+            $prixTTC =  $singleProduct['prixTTC'];
+            $formats =  $singleProduct['formats'];
+            $stock =  $singleProduct['stock'];
+            $date =  date_format(date_create($singleProduct['date']), 'd/m/Y H:i:s');
+
+
+        } else {
+            die("Cet article n'existe pas !");
+        }
+
+    } else {
+        header('Location : accueil');
+    }
     
-//     require('views/singleProductView.php');
-// }
+    require('views/singleProductView.php');
+}
 
 function profilUser(){
     $profilUser = new User;
     require('views/profileView.php');
-    
 }
 
 //pagination + affichage de tous les produits
@@ -215,10 +246,6 @@ function total_number_articles(){
     //     // var_dump($premier);
     //     $get_page = $allProducts->get_by_page($premier,$parPage);
     //     var_dump($get_page);
-        
-
-
-   
     require('views/allProductsView.php');
 }
 

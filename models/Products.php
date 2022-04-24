@@ -77,6 +77,41 @@ class Products extends Category {
     //     return $res;
     // } 
 
+    //(1/2)Création page article selon son id 
+    public function getSingleProduct($id)
+    {
+        $this->id = $id;
+
+        $sql ="SELECT * FROM `produit` WHERE id_produit = $id ";
+        // On prépare la requête
+        $request = $this->bdd->prepare($sql);
+        // On exécute
+        $request->execute([$id]);
+        // On récupère les valeurs dans un tableau associatif
+        // $articles = $request->fetchAll(PDO::FETCH_ASSOC);
+        $articles = $request->fetch(PDO::FETCH_ASSOC);
+        // var_dump($articles);
+
+        return $articles;
+    }
+    //(2/2)Création page article selon son id  
+    public function countSingleProdu($id)
+    {
+        $this->id = $id;
+
+        $sql ="SELECT * FROM `produit` WHERE id_produit = $id ";
+        // On prépare la requête
+        $request = $this->bdd->prepare($sql);
+        // On exécute
+        $request->execute([$id]);
+
+        $countArt = $request->rowCount();
+
+        return $countArt;
+
+    }
+    
+
     public function getShampoing()
     {   
         $req = $this->db->prepare("SELECT * FROM `produit` WHERE id_sous_categorie = 1");
@@ -130,7 +165,6 @@ class Products extends Category {
 
         return $nbArticles;
     }
-    
     //(2/2)le nombre d'articles par page 
     public function get_by_page($first, $bypage)
     {
@@ -148,6 +182,8 @@ class Products extends Category {
 
         return $articles;
     }
+
+
 
 
     // //OK articles.php

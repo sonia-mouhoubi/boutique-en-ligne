@@ -42,9 +42,9 @@ try {
         elseif ($_GET['url'] == 'soin') {
             getSoin();
         }
-        // elseif ($_GET['url'] == 'produit') {
-        //     getSingleProduct($id);
-        // } 
+        elseif ($_GET['url'] == 'produit') {
+            getSingleProduct($id);
+        } 
         elseif ($_GET['url'] == 'admin') {
             getAdmin();
         }   
