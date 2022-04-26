@@ -4,7 +4,7 @@
 // require_once('Bdd.php');
 require_once('Category.php');
 
-
+ 
 class Products extends Category {
     private $idProduct;
     private $nameProduct;
@@ -17,6 +17,8 @@ class Products extends Category {
     private $stock;
     private $idCategory;
     private $idSubCategory;
+    private $first;
+    private $bypage;
 
     // public function __construct() {
        
@@ -75,7 +77,42 @@ class Products extends Category {
     //     return $res;
     // } 
 
-    public function getShampoing() 
+    //(1/2)Création page article selon son id 
+    public function getSingleProduct($id)
+    {
+        $this->id = $id;
+
+        $sql ="SELECT * FROM `produit` WHERE id_produit = $id ";
+        // On prépare la requête
+        $request = $this->bdd->prepare($sql);
+        // On exécute
+        $request->execute([$id]);
+        // On récupère les valeurs dans un tableau associatif
+        // $articles = $request->fetchAll(PDO::FETCH_ASSOC);
+        $articles = $request->fetch(PDO::FETCH_ASSOC);
+        // var_dump($articles);
+
+        return $articles;
+    }
+    //(2/2)Création page article selon son id  
+    public function countSingleProdu($id)
+    {
+        $this->id = $id;
+
+        $sql ="SELECT * FROM `produit` WHERE id_produit = $id ";
+        // On prépare la requête
+        $request = $this->bdd->prepare($sql);
+        // On exécute
+        $request->execute([$id]);
+
+        $countArt = $request->rowCount();
+
+        return $countArt;
+
+    }
+    
+
+    public function getShampoing()
     {   
         $req = $this->db->prepare("SELECT * FROM `produit` WHERE id_sous_categorie = 1");
         $req->execute();
@@ -84,7 +121,7 @@ class Products extends Category {
         return $res;
     } 
 
-    public function getApresShampoing() 
+    public function getApresShampoing()
     {   
         $req = $this->db->prepare("SELECT * FROM `produit` WHERE id_sous_categorie = 2");
         $req->execute();
@@ -101,6 +138,100 @@ class Products extends Category {
 
         return $res;
     } 
+
+     public function allProducts()
+    {
+        $req = $this->db->prepare("SELECT * FROM produit");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC); 
+
+        return $res;
+    }
+    
+    //(1/2) On détermine le nombre total d'articles 
+    public function total_number_articles()
+    {
+        // On détermine le nombre total d'articles
+        $sql = 'SELECT COUNT(*) AS nb_articles FROM `produit`;';
+        // On prépare la requête
+        $query = $this->db->prepare($sql);
+        // On exécute
+        $query->execute();
+        // On récupère le nombre d'articles
+        $result = $query->fetch();
+        //var_dump($result); //OK fonctionne mais problème lors de l'attribution en int
+        $nbArticles = intval($result['nb_articles']) ;
+        // var_dump($nbArticles);
+
+        return $nbArticles;
+    }
+    //(2/2)le nombre d'articles par page 
+    public function get_by_page($first, $bypage)
+    {
+        $this->first = $first;      
+        $this->bypage = $bypage;      
+
+        $sql = "SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT  $first, $bypage";
+        // On prépare la requête
+        $query = $this->db->prepare($sql);
+        // On exécute
+        $query->execute([$first, $bypage]);
+        // On récupère les valeurs dans un tableau associatif
+        $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($articles);
+
+        return $articles;
+    }
+
+
+
+
+    // //OK articles.php
+    // //PAGINATION 1/4
+    // public function pag_count()
+    // {
+    //     $req = $this->db->prepare("SELECT * FROM produit");
+    //     $req->execute();
+    //     $countArt = $req->rowCount();
+
+    //     return $countArt;
+    // }
+
+    // //OK articles.php
+    // //PAGINATION 2/4
+    // public function pag_recup($start, $articlesByPages)
+    // {
+    //     $req = $this->db->prepare("SELECT * FROM produit ORDER BY id_produit DESC LIMIT $start, $articlesByPages");
+    //     $req->execute();
+    //     $artInfos = $req->fetchAll(PDO::FETCH_ASSOC); 
+
+    //     return $artInfos;
+    // }
+
+    // //OK articles.php
+    // //PAGINATION 3/4
+    // public function pag_recup_id($id_categorie)
+    // {
+    //     $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = ? ORDER BY date DESC");
+    //     $req->execute([$id_categorie]);
+    //     $artInfos = $req->fetchall(PDO::FETCH_ASSOC);
+
+    //     return $artInfos;
+    // }
+
+    // //OK articles.php
+    // //PAGINATION 4/4
+    // public function page_get_info_cat($id_categorie)
+    // {
+    //     $req = $this->db->prepare("SELECT * FROM produit WHERE id = ?");
+    //     $getInfoCat = $req->fetchall();
+
+    //     return $getInfoCat;
+
+      
+    // }
+
+    
     
   // ********************************** Enregistrement produit coté BACK ************************
 
