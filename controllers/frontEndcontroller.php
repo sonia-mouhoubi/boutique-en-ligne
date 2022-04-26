@@ -168,7 +168,7 @@ function getSoin()
     $products = new Products;
     $res = $products->getSoin();
     
-    require('views/soinView.php');
+    require('views/conditionerView.php');
 }
 
 function getSingleProduct($id)

@@ -10,9 +10,15 @@
 
     <?php 
     if (isset($_GET['url'])) {
-        if($_GET['url'] == 'admin/ajout-categorie') { ?>
+        $val = substr($_GET['url'], 14);
+
+        if($_GET['url'] == 'admin') { ?>
             <link href="../public/css/styles.css" rel="stylesheet" /> <?php
-        } 
+        }
+        elseif($_GET['url'] == "admin/produit/$val") { ?>
+            <link href="../../public/css/styles.css" rel="stylesheet" /> <?php
+
+        }
         else { ?>
             <link href="../public/css/styles.css" rel="stylesheet" /> <?php
         } 
@@ -42,9 +48,10 @@
                     <li><a href="/projectpool2/boutique-en-ligne/inscription">Inscription</a></li>
                     <li><a href="/projectpool2/boutique-en-ligne/connexion">Connexion</a></li>
                     <li><a href="/projectpool2/boutique-en-ligne/profil">Profil</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/admin/ajout-sous-categorie">Admin</a></li>
+                    <li><a href="/projectpool2/boutique-en-ligne/admin/ajout-produit">Administration</a></li>
                     <li><a href="/projectpool2/boutique-en-ligne/contact">Contact</a></li>
-                    <li><a href="/projectpool2/boutique-en-ligne/panier">Panier</a></li>
+                    <li><a href="/projectpool2/boutique-en-ligne/"><img src="../public/img/search.svg" alt="Recherche"></a></li>
+                    <li><a href="/projectpool2/boutique-en-ligne/"><img src="../public/img/panier.svg" alt="Panier"></a></li>
                 </ul>
             </nav>
         </header>

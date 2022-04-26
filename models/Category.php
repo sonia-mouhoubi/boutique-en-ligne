@@ -12,12 +12,9 @@ class Category extends Bdd {
     private $nameSubCategory;
 
 
-    // public function __construct() {
-       
-    // }
 // Pour FORM PRODUIT Permet de récupérer les catégories ds le formulaire des nouveaux produits
     public function getCategory() {
-        $req = $this->db->prepare("SELECT * FROM `categorie`");
+        $req = $this->db->prepare("SELECT * FROM `categorie` ORDER BY `id_categorie` DESC");
         $req->execute();
         $resCat = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -26,7 +23,7 @@ class Category extends Bdd {
 
 // Pour FORM PRODUIT Idem pour les sous-catégories
     public function getSubCategory() {
-        $req = $this->db->prepare("SELECT * FROM `sous_categorie`");
+        $req = $this->db->prepare("SELECT * FROM `sous_categorie` ORDER BY `id_sous_categorie` DESC");
         $req->execute();
         $resSubCat = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -55,6 +52,17 @@ class Category extends Bdd {
         return $resSubCatbyName;
     }
 
+    // Permet de liéer les catégories au sous-catégories
+    public function getCategorySubCategory() {
+        $req = $this->db->prepare("SELECT id_sous_categorie, nom_du_produit FROM sous_categorie INNER JOIN categorie ON sous_categorie.id_sous_categorie = categorie.id_categorie
+        ");
+        $req->execute();
+        $resSousCat = $req->fetchAll(PDO::FETCH_ASSOC);   
+
+        return $resSousCat;
+    }
+// Enregistrement produits, categories, sous-categorie
+
     public function registerNewCategory($newCategory) { 
         $this->newCategory = $newCategory;      
 
@@ -69,14 +77,7 @@ class Category extends Bdd {
         $req->execute([$newSubcategory]);
     }
 
-    public function getCategorySubCategory() {
-        $req = $this->db->prepare("SELECT id_sous_categorie, nom_du_produit FROM sous_categorie INNER JOIN categorie ON sous_categorie.id_sous_categorie = categorie.id_categorie
-        ");
-        $req->execute();
-        $resSousCat = $req->fetchAll(PDO::FETCH_ASSOC);   
-
-        return $resSousCat;
-    }
+   
 
     // public function getNameCategoryById($idCategory) 
     // {

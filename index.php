@@ -1,4 +1,7 @@
 <?php
+session_start();
+$val = substr($_GET['url'], 14);
+
 // define()
 require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
@@ -19,7 +22,6 @@ try {
             // profileUser();
         }
         elseif ($_GET['url'] == 'cheveux-raides'){
-
             getProductsStraight();
         }
         elseif ($_GET['url'] == 'cheveux-frises') {
@@ -37,12 +39,12 @@ try {
         elseif ($_GET['url'] == 'soin') {
             getSoin();
         }
-        elseif ($_GET['url'] == 'produit') {
-            getSingleProduct($id);
-        } 
+        // elseif ($_GET['url'] == 'produit') {
+        //     getSingleProduct($id);
+        // } 
         elseif ($_GET['url'] == 'admin') {
             getAdmin();
-        }   
+        }  
         elseif ($_GET['url'] == 'admin/ajout-produit') {
             registerProduct();   
         }
@@ -61,7 +63,10 @@ try {
         elseif ($_GET['url'] == 'admin/sous-categorie') {
             getSubCategory();
         }
-        elseif ($_GET['url'] == "admin/modification-produit/") {
+        elseif ($_GET['url'] == 'admin/client') {
+            getUserAdmin();
+        } 
+        elseif ($_GET['url'] == "admin/produit/$val") {
             updateProduct();
         }
         else {

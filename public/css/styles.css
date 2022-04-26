@@ -138,9 +138,9 @@ footer {
     background-color: whitesmoke;
     width: 15vw;
     height: 100vh;
-    position: fixed;
+    /* position: fixed;
     z-index: 0;
-    top : 0;
+    top : 0; */
 }
 .nav-admin ul {
     height: 100vh;

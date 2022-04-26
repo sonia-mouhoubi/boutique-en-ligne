@@ -102,7 +102,7 @@ class Products extends Category {
         return $res;
     } 
     
-  // ********************************** Affichage produit coté BACK ************************
+  // ********************************** Enregistrement produit coté BACK ************************
 
     public function registerProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory) { 
         $this->nameProduct = $nameProduct;
@@ -124,8 +124,8 @@ class Products extends Category {
 
   public function getProductByID($idProduct) {   
     $req = $this->db->prepare("SELECT * FROM `produit` INNER JOIN categorie ON produit.id_categorie = categorie.id_categorie INNER JOIN sous_categorie ON produit.id_sous_categorie = sous_categorie.id_sous_categorie WHERE id_produit = ?");
-    $req->execute();
-    $resProduct = $req->fetchAll(PDO::FETCH_ASSOC);   
+    $req->execute([$idProduct]);
+    $resProduct = $req->fetch(PDO::FETCH_ASSOC);   
 
     return $resProduct;
 } 
@@ -142,7 +142,7 @@ class Products extends Category {
         $this->idCategory = $idCategory;    
         $this->idSubCategory = $idSubCategory;      
 
-        $req = $this->db->prepare("UPDATE `produit` SET `id_produit`=?,`nom_produit`=?,`description`=?,`image`=?,`prixHT`=?,`tauxTVA`=?,`prixTTC`=?,`formats`=?,`stock`=?,`id_categorie`=?,`id_sous_categorie`=? WHERE id_produit");
+        $req = $this->db->prepare("UPDATE produit SET nom_produit=?,description=?, image=?, prixHT=?, tauxTVA=?, prixTTC=?, formats=?,stock=?, id_categorie=?, id_sous_categorie=? WHERE id_produit = id_produit");
         $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory]);
     }
 }
