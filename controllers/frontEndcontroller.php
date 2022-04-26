@@ -170,7 +170,7 @@ function getSoin()
     
     require('views/soinView.php');
 }
-
+ 
 function getSingleProduct($id)
 {
     $products = new Products;
