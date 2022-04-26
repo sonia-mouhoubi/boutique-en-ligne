@@ -14,16 +14,16 @@ ob_start();
                 <section class="products">
 
     <?php foreach ($products as $value){ 
-        // var_dump($value);
+        // var_dump($value); 
     ?>
                     <div class="content-img">
-                        <h2><a href="tous-les-produits?id=<?= $value['id_produit'] ?>"><?php echo $value['id_produit'] ?></a></h2>
-                        <a href="tous-les-produits?id=<?= $value['id_produit'] ?>"><img src="./public/img/<?php echo $value['image'] ?>" alt=""></a>
+                        <h2><a href="produit/<?= $value['id_produit'] ?>"><?php echo $value['id_produit'] ?></a></h2>
+                        <a href="produit/<?= $value['id_produit'] ?>"><img src="./public/img/<?php echo $value['image'] ?>" alt=""></a>
                     </div>
 
                     <div class="content-text">
-                        <h6 class="text-article"><a href="tous-les-produits?id=<?= $value['id_produit'] ?>"><?php echo $value['nom_produit'] ?></a></h6>
-                        <h6 class="text-article"><a href="tous-les-produits?id=<?= $value['id_produit'] ?>"><?php echo $value['prixTTC'] ?></a></h6>
+                        <h6 class="text-article"><a href="produit/<?= $value['id_produit'] ?>"><?php echo $value['nom_produit'] ?></a></h6>
+                        <h6 class="text-article"><a href="produit/<?= $value['id_produit'] ?>"><?php echo $value['prixTTC'] ?></a></h6>
                     </div>
                 </a>
 

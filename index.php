@@ -7,66 +7,72 @@ require('controllers/backEndController.php');
 // var_dump($_SERVER);
 try {
     // $_GET['url'] = '';
+    var_dump($_GET['url']);
+    $url = explode('/', $_GET['url']);
+    var_dump($url);
+
     if (isset($_GET['url'])) {
-        if ($_GET['url'] == 'accueil') {
+        if ($url[0] == 'accueil') {
             require('views/homeView.php');
         }
-        elseif ($_GET['url'] == 'inscription') {
+        elseif ($url[0] == 'inscription') {
             registerUser();
         }
-        elseif ($_GET['url'] == 'connexion') {
+        elseif ($url[0] == 'connexion') {
             connectUser();
         }
         // elseif ($_GET['url'] == 'profil') {
         //     profileUser();
         // }
-        elseif ($_GET['url'] == 'tous-les-produits') {
+        elseif ($url[0] == 'tous-les-produits') {
             total_number_articles();
         }
-        elseif ($_GET['url'] == 'cheveux-raides'){
+        elseif ($url[0] == 'cheveux-raides'){
 
             getProductsStraight();
         }
-        elseif ($_GET['url'] == 'cheveux-frises') {
+        elseif ($url[0] == 'cheveux-frises') {
             getProductsCurlyfrizzy();
         }
-        elseif ($_GET['url'] == 'cheveux-boucles') {
+        elseif ($url[0] == 'cheveux-boucles') {
             getProductsCurly();
         }
-        elseif ($_GET['url'] == 'shampoing') {
+        elseif ($url[0] == 'shampoing') {
             getShampoing();
         }
-        elseif ($_GET['url'] == 'apres-shampoing') {
+        elseif ($url[0] == 'apres-shampoing') {
             getApresShampoing();
         }
-        elseif ($_GET['url'] == 'soin') {
+        elseif ($url[0] == 'soin') {
             getSoin();
         }
-        elseif ($_GET['url'] == 'produit') {
+        elseif ($url[0] == 'produit') {
             getSingleProduct($id);
+            var_dump($_GET['url']);
+
         } 
-        elseif ($_GET['url'] == 'admin') {
+        elseif ($url[0] == 'admin') {
             getAdmin();
         }   
-        elseif ($_GET['url'] == 'admin/ajout-produit') {
+        elseif ($url[0] == 'admin/ajout-produit') {
             registerProduct();   
         }
-        elseif ($_GET['url'] == 'admin/ajout-categorie') {
+        elseif ($url[0] == 'admin/ajout-categorie') {
             registerNewCategory();   
         }
-        elseif ($_GET['url'] == 'admin/ajout-sous-categorie') {
+        elseif ($url[0] == 'admin/ajout-sous-categorie') {
             registerNewSubCategory();
         }
-        elseif ($_GET['url'] == 'admin/produit') {
+        elseif ($url[0] == 'admin/produit') {
             getProduct();
         }
-        elseif ($_GET['url'] == 'admin/categorie') {
+        elseif ($url[0] == 'admin/categorie') {
             getCategory();
         }
-        elseif ($_GET['url'] == 'admin/sous-categorie') {
+        elseif ($url[0] == 'admin/sous-categorie') {
             getSubCategory();
         }
-        elseif ($_GET['url'] == "admin/modification-produit/") {
+        elseif ($url[0] == "admin/modification-produit/") {
             updateProduct();
         }
         else {
