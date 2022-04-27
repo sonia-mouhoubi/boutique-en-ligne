@@ -39,6 +39,7 @@ var_dump($get_page);
                 <section class="products">
     <h2>Tous les produits</h2>
 
+
     <?php foreach ($get_page as $value){ var_dump($value);?>
                     <div class="content-img">
                     <a href="./tous-les-produits/<?php echo $value['id_produit'] ?>">
@@ -48,6 +49,7 @@ var_dump($get_page);
                     <div class="content-text">
                         <h6 class="text-article"><?php echo $value['nom_produit'] ?></h6>
                         <h6 class="text-article"><?php echo $value['prixTTC'] ?></h6>
+
                     </div>
                 </a>
 
