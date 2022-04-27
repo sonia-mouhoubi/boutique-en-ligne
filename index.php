@@ -48,6 +48,7 @@ try {
         elseif ($_GET['url'] == 'produit') {
             getSingleProduct($id);
         } 
+
         elseif ($_GET['url'] == 'admin') {
             getAdmin();
         }  
@@ -69,9 +70,11 @@ try {
         elseif ($_GET['url'] == 'admin/sous-categorie') {
             getSubCategory();
         }
-        // elseif ($_GET['url'] == 'admin/client') {
-        //     getUserAdmin();
-        // } 
+
+        elseif ($_GET['url'] == 'admin/client') {
+            getUserAdmin();
+        } 
+
         elseif ($_GET['url'] == "admin/produit/$val") {
             updateProduct();
         }

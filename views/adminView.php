@@ -13,6 +13,7 @@ ob_start();
         <li><a href="./categorie">Catégories</a></li>
         <li><a href="./ajout-sous-categorie">Ajouter une sous catégorie</a></li>
         <li><a href="./sous-categorie">Sous-catégories</a></li>
+        <li><a href="./client">Clients</a></li>
     </ul>
 </nav>
 
@@ -39,6 +40,9 @@ ob_start();
         }
         elseif(isset($contentupdateproduct)) {
             echo $contentupdateproduct;
+        }
+        elseif(isset($contentclient)) {
+            echo $contentclient;
         }
     ?>   
 </section>

@@ -55,7 +55,8 @@ $get_page = $allProducts->get_by_page($premier,$parPage);
 
     <?php foreach ($get_page as $value){ ?>
                     <div class="content-img">
-                        <a href="./tous-les-produits?id=<?php echo $value['id_produit'] ?>">
+                        <a href="produits?id=<?php echo $value['id_produit'] ?>">
+                        <!-- <a href="./tous-les-produits?id=<?php //echo $value['id_produit'] ?>"> -->
                         <img src="./public/img/<?php echo $value['image'] ?>" alt="">
                     </div>
 

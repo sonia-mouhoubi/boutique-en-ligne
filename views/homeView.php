@@ -1,13 +1,22 @@
 <?php $title = 'Ma page d\'accueil'; 
 $description = 'Boutique en ligne, page d\'accueil'; 
 // $css = 'public/css/styles.css';
-
-// <!-- Permet de mettre pleins de code dans une variable (DEBUT) -->
 ob_start(); 
 ?> 
-
 <h1>Ma page d'accueil</h1>
-<p>Mes derniers articles : </p>
+    <section class="carousel" aria-label="Gallery">
+    <div class="slider">
+        <figure>
+            <!-- <img src="./public/img/afro.jpg" alt="Nom du produit">
+            <img src="./public/img/raide.jpg" alt="Nom du produit">
+            <img src="./public/img/boucle.jpg" alt="Nom du produit"> -->
+            <img src="./public/img/accueil.jpg" alt="Nom du produit">
+            <img src="./public/img/shampoing-olive.jpg" alt="Nom du produit">
+            <img src="./public/img/raide.jpg" alt="Nom du produit">
+            <img src="./public/img/my-hair.jpg" alt="Nom du produit">
+        </figure>
+    </div>
+    </section>
 
 <!-- Créer une boucle pour afficher des articles en php -->
 

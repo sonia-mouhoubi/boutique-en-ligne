@@ -84,7 +84,7 @@ class Products extends Category {
 
         $sql ="SELECT * FROM `produit` WHERE id_produit = $id ";
         // On prépare la requête
-        $request = $this->bdd->prepare($sql);
+        $request = $this->db->prepare($sql);
         // On exécute
         $request->execute([$id]);
         // On récupère les valeurs dans un tableau associatif
@@ -101,7 +101,7 @@ class Products extends Category {
 
         $sql ="SELECT * FROM `produit` WHERE id_produit = $id ";
         // On prépare la requête
-        $request = $this->bdd->prepare($sql);
+        $request = $this->db->prepare($sql);
         // On exécute
         $request->execute([$id]);
 
@@ -222,54 +222,54 @@ class Products extends Category {
 
 
 
-    // //OK articles.php
-    // //PAGINATION 1/4
-    // public function pag_count()
-    // {
-    //     $req = $this->db->prepare("SELECT * FROM produit");
-    //     $req->execute();
-    //     $countArt = $req->rowCount();
+    //OK articles.php
+    //PAGINATION 1/4
+    public function pag_count()
+    {
+        $req = $this->db->prepare("SELECT * FROM produit");
+        $req->execute();
+        $countArt = $req->rowCount();
 
-    //     return $countArt;
-    // }
+        return $countArt;
+    }
 
-    // //OK articles.php
-    // //PAGINATION 2/4
-    // public function pag_recup($start, $articlesByPages)
-    // {
-    //     $req = $this->db->prepare("SELECT * FROM produit ORDER BY id_produit DESC LIMIT $start, $articlesByPages");
-    //     $req->execute();
-    //     $artInfos = $req->fetchAll(PDO::FETCH_ASSOC); 
+    //OK articles.php
+    //PAGINATION 2/4
+    public function pag_recup($start, $articlesByPages)
+    {
+        $req = $this->db->prepare("SELECT * FROM produit ORDER BY id_produit DESC LIMIT $start, $articlesByPages");
+        $req->execute();
+        $artInfos = $req->fetchAll(PDO::FETCH_ASSOC); 
 
-    //     return $artInfos;
-    // }
+        return $artInfos;
+    }
 
-    // //OK articles.php
-    // //PAGINATION 3/4
-    // public function pag_recup_id($id_categorie)
-    // {
-    //     $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = ? ORDER BY date DESC");
-    //     $req->execute([$id_categorie]);
-    //     $artInfos = $req->fetchall(PDO::FETCH_ASSOC);
+    //OK articles.php
+    //PAGINATION 3/4
+    public function pag_recup_id($id_categorie)
+    {
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = ? ORDER BY date DESC");
+        $req->execute([$id_categorie]);
+        $artInfos = $req->fetchall(PDO::FETCH_ASSOC);
 
-    //     return $artInfos;
-    // }
+        return $artInfos;
+    }
 
-    // //OK articles.php
-    // //PAGINATION 4/4
-    // public function page_get_info_cat($id_categorie)
-    // {
-    //     $req = $this->db->prepare("SELECT * FROM produit WHERE id = ?");
-    //     $getInfoCat = $req->fetchall();
+    //OK articles.php
+    //PAGINATION 4/4
+    public function page_get_info_cat($id_categorie)
+    {
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id = ?");
+        $getInfoCat = $req->fetchall();
 
-    //     return $getInfoCat;
+        return $getInfoCat;
 
       
-    // }
+    }
 
     
     
-  // ********************************** Affichage produit coté BACK ************************
+  // ********************************** Enregistrement produit coté BACK ************************
 
     public function registerProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory) { 
         $this->nameProduct = $nameProduct;
@@ -289,15 +289,15 @@ class Products extends Category {
 
   // ********************************** Modification du produits*
 
-  public function getProductByID($idProduct) {   
+    public function getProductByID($idProduct) {   
     $req = $this->db->prepare("SELECT * FROM `produit` INNER JOIN categorie ON produit.id_categorie = categorie.id_categorie INNER JOIN sous_categorie ON produit.id_sous_categorie = sous_categorie.id_sous_categorie WHERE id_produit = ?");
-    $req->execute();
-    $resProduct = $req->fetchAll(PDO::FETCH_ASSOC);   
+    $req->execute([$idProduct]);
+    $resProduct = $req->fetch(PDO::FETCH_ASSOC);   
 
     return $resProduct;
 } 
 
-    public function updateProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory) { 
+    public function updateProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct) { 
         $this->nameProduct = $nameProduct;
         $this->description = $description; 
         $this->image = $image;  
@@ -306,12 +306,13 @@ class Products extends Category {
         $this->priceTTC = $priceHT;    
         $this->formats = $formats;         
         $this->stock = $stock;    
-        $this->idCategory = $idCategory;    
-        $this->idSubCategory = $idSubCategory;      
+        $this->idCategory = $idCategory;  
+        $this->idSubCategory = $idSubCategory;  
+        $this->idProduct = $idProduct;
 
-        $req = $this->db->prepare("UPDATE `produit` SET `id_produit`=?,`nom_produit`=?,`description`=?,`image`=?,`prixHT`=?,`tauxTVA`=?,`prixTTC`=?,`formats`=?,`stock`=?,`id_categorie`=?,`id_sous_categorie`=? WHERE id_produit");
-        $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory]);
-    }
+        $req = $this->db->prepare("UPDATE produit SET nom_produit=?,description=?, image=?, prixHT=?, tauxTVA=?, prixTTC=?, formats=?,stock=?, id_categorie=?, id_sous_categorie=? WHERE id_produit = ?");
+        $a = $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct]);
+    } 
 }
 ?>
 
