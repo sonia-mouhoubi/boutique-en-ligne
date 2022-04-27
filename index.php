@@ -1,4 +1,6 @@
 <?php
+session_start();
+// $val = substr($_GET['url'], 14);
 
 // define()
 
@@ -6,73 +8,71 @@ require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
 // var_dump($_SERVER);
 try {
-    // $_GET['url'] = '';
-    var_dump($_GET['url']);
-    $url = explode('/', $_GET['url']);
-    var_dump($url);
+    $val = substr($_GET['url'], 14);
 
+    // $_GET['url'] = '';
     if (isset($_GET['url'])) {
-        if ($url[0] == 'accueil') {
+        if ($_GET['url'] == 'accueil') {
             require('views/homeView.php');
         }
-        elseif ($url[0] == 'inscription') {
+        elseif ($_GET['url'] == 'inscription') {
             registerUser();
         }
-        elseif ($url[0] == 'connexion') {
+        elseif ($_GET['url'] == 'connexion') {
             connectUser();
         }
         // elseif ($_GET['url'] == 'profil') {
         //     profileUser();
         // }
-        elseif ($url[0] == 'tous-les-produits') {
+        elseif ($_GET['url'] == 'tous-les-produits') {
             total_number_articles();
         }
-        elseif ($url[0] == 'cheveux-raides'){
-
+        elseif ($_GET['url'] == 'cheveux-raides'){
             getProductsStraight();
         }
-        elseif ($url[0] == 'cheveux-frises') {
+        elseif ($_GET['url'] == 'cheveux-frises') {
             getProductsCurlyfrizzy();
         }
-        elseif ($url[0] == 'cheveux-boucles') {
+        elseif ($_GET['url'] == 'cheveux-boucles') {
             getProductsCurly();
         }
-        elseif ($url[0] == 'shampoing') {
+        elseif ($_GET['url'] == 'shampoing') {
             getShampoing();
         }
-        elseif ($url[0] == 'apres-shampoing') {
+        elseif ($_GET['url'] == 'apres-shampoing') {
             getApresShampoing();
         }
-        elseif ($url[0] == 'soin') {
+        elseif ($_GET['url'] == 'soin') {
             getSoin();
         }
-        elseif ($url[0] == 'produit') {
+        elseif ($_GET['url'] == 'produit') {
             getSingleProduct($id);
-            var_dump($_GET['url']);
-
         } 
-        elseif ($url[0] == 'admin') {
+        elseif ($_GET['url'] == 'admin') {
             getAdmin();
-        }   
-        elseif ($url[0] == 'admin/ajout-produit') {
+        }  
+        elseif ($_GET['url'] == 'admin/ajout-produit') {
             registerProduct();   
         }
-        elseif ($url[0] == 'admin/ajout-categorie') {
+        elseif ($_GET['url'] == 'admin/ajout-categorie') {
             registerNewCategory();   
         }
-        elseif ($url[0] == 'admin/ajout-sous-categorie') {
+        elseif ($_GET['url'] == 'admin/ajout-sous-categorie') {
             registerNewSubCategory();
         }
-        elseif ($url[0] == 'admin/produit') {
+        elseif ($_GET['url'] == 'admin/produit') {
             getProduct();
         }
-        elseif ($url[0] == 'admin/categorie') {
+        elseif ($_GET['url'] == 'admin/categorie') {
             getCategory();
         }
-        elseif ($url[0] == 'admin/sous-categorie') {
+        elseif ($_GET['url'] == 'admin/sous-categorie') {
             getSubCategory();
         }
-        elseif ($url[0] == "admin/modification-produit/") {
+        // elseif ($_GET['url'] == 'admin/client') {
+        //     getUserAdmin();
+        // } 
+        elseif ($_GET['url'] == "admin/produit/$val") {
             updateProduct();
         }
         else {

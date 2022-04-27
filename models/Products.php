@@ -148,36 +148,72 @@ class Products extends Category {
         return $res;
     }
     
+    // //(1/2) On détermine le nombre total d'articles 
+    // public function total_number_articles()
+    // {
+    //     // On détermine le nombre total d'articles
+    //     $sql = 'SELECT COUNT(*) AS nb_articles FROM `produit`;';
+    //     // On prépare la requête
+    //     $query = $this->db->prepare($sql);
+    //     // On exécute
+    //     $query->execute();
+    //     // On récupère le nombre d'articles
+    //     $result = $query->fetch();
+    //     //var_dump($result); //OK fonctionne mais problème lors de l'attribution en int
+    //     $nbArticles = intval($result['nb_articles']) ;
+    //     // var_dump($nbArticles);
+
+    //     return $nbArticles;
+    // }
+    // //(2/2)le nombre d'articles par page 
+    // public function get_by_page($first, $bypage)
+    // {
+    //     $this->first = $first;      
+    //     $this->bypage = $bypage;      
+
+    //     $sql = "SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT  $first, $bypage";
+    //     // On prépare la requête
+    //     $query = $this->db->prepare($sql);
+    //     // On exécute
+    //     $query->execute([$first, $bypage]);
+    //     // On récupère les valeurs dans un tableau associatif
+    //     $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+    //     // var_dump($articles);
+
+    //     return $articles;
+    // }
+
+    //==>PAGE ARTICLES.PHP ==> PAGINATION
     //(1/2) On détermine le nombre total d'articles 
     public function total_number_articles()
     {
         // On détermine le nombre total d'articles
-        $sql = 'SELECT COUNT(*) AS nb_articles FROM `produit`;';
+        $sql = 'SELECT COUNT(*) FROM `produit`;';
         // On prépare la requête
-        $query = $this->db->prepare($sql);
+        $request = $this->db->prepare($sql);
         // On exécute
-        $query->execute();
+        $request->execute();
         // On récupère le nombre d'articles
-        $result = $query->fetch();
+        $result = $request->fetch();
         //var_dump($result); //OK fonctionne mais problème lors de l'attribution en int
-        $nbArticles = intval($result['nb_articles']) ;
+        $nbArticles = intval($result);
         // var_dump($nbArticles);
 
         return $nbArticles;
     }
-    //(2/2)le nombre d'articles par page 
+    //==>PAGE ARTICLES.PHP  ==> PAGINATION
+        //(2/2)le nombre d'articles par page 
     public function get_by_page($first, $bypage)
     {
-        $this->first = $first;      
-        $this->bypage = $bypage;      
-
-        $sql = "SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT  $first, $bypage";
+        $sql = 'SELECT * FROM `produit` ORDER BY `nom_produit` DESC LIMIT :premier, :parpage;';
         // On prépare la requête
-        $query = $this->db->prepare($sql);
+        $request = $this->db->prepare($sql);
+        $request->bindValue(':premier', $first, PDO::PARAM_INT);
+        $request->bindValue(':parpage', $bypage, PDO::PARAM_INT);
         // On exécute
-        $query->execute([$first, $bypage]);
+        $request->execute();
         // On récupère les valeurs dans un tableau associatif
-        $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+        $articles = $request->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($articles);
 
         return $articles;
@@ -240,8 +276,8 @@ class Products extends Category {
         $this->description = $description; 
         $this->image = $image;  
         $this->priceHT = $priceHT; 
-        $this->TVA = $TVA;
-        $this->priceTTC = $priceHT;    
+        $this->TVA = $TVA; 
+        $this->priceTTC = $priceHT;
         $this->formats = $formats;         
         $this->stock = $stock;    
         $this->idCategory = $idCategory;    
