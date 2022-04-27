@@ -5,9 +5,11 @@
         <title><?= $title ?></title>
         <meta name="description" content="<?= $description ?>">
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="public/css/styles.css" rel="stylesheet" /> 
-
     <?php 
     if (isset($_GET['url'])) {
         $val = substr($_GET['url'], 14);
@@ -62,8 +64,15 @@
         </main>
        
         <footer>
-            <a href="">Facebook</a>
-            <a href="">Maquette</a>
+            <div>
+                <a href=""><img src="./public/img/linkedin.png" alt="Logo Linkedin">
+                <a href=""><img src="./public/img/facebook.png" alt="Logo Facebook">
+                <a href=""><img src="./public/img/instagram.png" alt="Logo Instagram"></a>
+            </div>
+            <a href="">Mentions légales</a>
+            <a href="">CGU/CGV</a>
+            <a href="mailto:contact@myhair.io">Contactez-nous</a>
+
             <a href="https://github.com/sonia-mouhoubi/boutique-en-ligne">Github</a>
         </footer>
     </body>

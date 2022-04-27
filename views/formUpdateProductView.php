@@ -36,7 +36,7 @@ var_dump($resProduct);
             <p><?= htmlspecialchars($resProduct['nom_du_produit'])?></p>
             <select name="idSubCategory">
                 <?php foreach ($resSubCat as $value) { ?>
-                    <option>
+                    <option value="">
                         <?= htmlspecialchars($value['nom_du_produit'])?>
                     </option>
                 <?php } ?>

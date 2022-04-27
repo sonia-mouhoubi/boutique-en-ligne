@@ -1,6 +1,6 @@
 <?php
 session_start();
-$val = substr($_GET['url'], 14);
+// $val = substr($_GET['url'], 14);
 
 // define()
 
@@ -8,6 +8,8 @@ require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
 // var_dump($_SERVER);
 try {
+    $val = substr($_GET['url'], 14);
+
     // $_GET['url'] = '';
     if (isset($_GET['url'])) {
         if ($_GET['url'] == 'accueil') {
