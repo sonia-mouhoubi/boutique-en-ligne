@@ -1,5 +1,6 @@
 <?php 
 ob_start();
+
 ?>
 <section class="productAdmin">
     <h2>Liste des produits</h2>
@@ -7,6 +8,7 @@ ob_start();
     <table>
         <thead> <!-- En-tête du tableau -->
             <tr>
+                <th>Produit phares</th>
                 <th>Nom du produit</th>
                 <th>Description</th>
                 <th>Image</th>
@@ -24,6 +26,7 @@ ob_start();
 
         <tfoot> <!-- Pied de tableau -->
             <tr>
+                <th>Produit phares</th>
                 <th>Nom du produit</th>
                 <th>Description</th>
                 <th>Image</th>
@@ -41,9 +44,12 @@ ob_start();
 
         <tbody> <!-- Corps du tableau -->
             <?php 
-                foreach ($res as $value) {
-                var_dump( $value); ?>
+                foreach ($res as $value) {?>
+                <?php $idProduct = $value['id_produit'];
+                ?>
                 <tr>
+                    <td><a href="produit-phares/<?= $idProduct ?>"><img src="../public/img/produit-phare.png" alt="Produits phares"><a></td>
+
                     <td> <?= htmlspecialchars($value['nom_produit'])?> </td>
                 
                     <td> <?= htmlspecialchars($value['description'])?> </td>
@@ -64,10 +70,10 @@ ob_start();
 
                     <td> <?= htmlspecialchars($value['nom_du_produit'])?> </td>
    
-                    <?php $idProduct = $value['id_produit']?>
-                    <td><a href="modification-produit"><img src="../public/img/update.svg" alt="Modifier"><a></td>
-
+                    <td><a href="./produit/<?= $idProduct ?>"><img src="../public/img/update.svg" alt="Modifier"><a></td>
+                    
                     <td><a href="suppression-produit"><img src="../public/img/delete.svg" alt="Supprimer"><a></td>
+                    <?php //var_dump($idProduct)?>
                 </tr>
             <?php } ?>
         </tbody>

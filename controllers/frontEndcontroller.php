@@ -168,7 +168,7 @@ function getSoin()
     $products = new Products;
     $res = $products->getSoin();
     
-    require('views/soinView.php');
+    require('views/conditionerView.php');
 }
  
 function getSingleProduct($id)
@@ -222,8 +222,8 @@ function total_number_articles(){
     $products = $allProducts->allProducts();
     // var_dump($products);
 
-    //TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
-    // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre
+    // // TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
+    // // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre
     // // On détermine sur quelle page on se trouve
     //     if(isset($_GET['page']) && !empty($_GET['page'])){
     //         $currentPage = (int)($_GET['page']);
