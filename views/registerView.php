@@ -20,7 +20,7 @@ ob_start();
 
 
         <label for="mail">Adresse Mail</label>
-        <input type="text" id="mail" name="mail"
+        <input type="email" id="mail" name="mail"
                 require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
 
 
