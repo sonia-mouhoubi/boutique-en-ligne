@@ -1,5 +1,5 @@
 <?php
-require('Bdd.php');
+require_once('Bdd.php');
 
 class User extends Bdd {
     private $id;
@@ -7,11 +7,10 @@ class User extends Bdd {
     private $nom;
     private $mail;
     private $password;
+    private $bdd;
 
 
-    public function home() {
-        echo 'salut';
-    }
+    // Fonction pour enregistrer un nouvel utilisateur
 
     public function register($prenom, $nom, $mail, $password) {   
         $this->prenom = $prenom;
@@ -38,7 +37,6 @@ class User extends Bdd {
         return $result;
     }
 
-
     public function connectUser($mail, $password){
         $this->mail = $mail;
         $this->password = $password;
@@ -51,9 +49,18 @@ class User extends Bdd {
         return $result;
     }
 
-    
     public function profileUser(){
        
+    }
+
+    public function getUserAdmin() 
+    {
+        $req = $this->db->prepare("SELECT * FROM `client` INNER JOIN droits ON client.id_droits = droits.id_droits
+        ");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC);   
+
+        return $res;
     }
 }
 ?>

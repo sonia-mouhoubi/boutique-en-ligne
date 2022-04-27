@@ -1,7 +1,10 @@
-<?php $title = 'Page inscription'; ?>
-<?php $description = 'Boutique en ligne, page d\'inscription'; ?>
-<!-- Début du contenu -->
-<?php ob_start(); ?>
+<?php 
+$title = 'Page inscription'; 
+$description = 'Boutique en ligne, page d\'inscription'; 
+$css = 'public/css/styles.css';
+
+ob_start(); 
+?>
 
 <section class="section-inscription">
 

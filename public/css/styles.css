@@ -1,0 +1,311 @@
+/* ::::::::::::::::::::::::::::::::::::::::::::::: CSS PAR DEFAUT :::::::::::::::::::::::::::::::::::::::::::::::: */
+* {
+	box-sizing : border-box;
+    /* scrollbar-color: transparent transparent; thumb and track color */
+    /* scrollbar-width: 0px; */
+}
+body {
+    scroll-behavior: smooth;
+    line-height: 1.15;
+	margin : 0;
+    padding: 0;
+}
+main {
+    min-height: 90vh;
+}
+a {
+	text-decoration : none;
+	font-weight : bold;
+    color: black;
+    font-weight: bolder;
+}
+img {
+    max-width: 100%;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+} 
+li {
+    list-style: none;
+}
+h1, h2, h3, h4, h5 {
+    padding: 1rem;
+    text-align: center;
+}
+form {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 3em;
+    padding : 2em;  
+    font-weight: bolder;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 15px;
+}
+form label {
+    color : black;
+}
+form input {
+    width: 30%;
+    margin: 2em auto;
+    border-top: black;
+    border-left: transparent;
+    border-right: transparent;
+}
+form input[type="submit"] {
+    font-weight: bolder;
+    font-size: 1rem;
+    background-color: inherit;
+    border: 2px solid black;
+    padding: 0.5rem;   
+    border-radius: 25px; 
+}
+form select {
+    margin: 0.5rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE HEADER :::::::::::::::::::::::::::::::::::::::::::::::: */
+header {
+    position: sticky;
+    z-index: 10;
+    background-color: whitesmoke;
+    padding: 1rem;
+    width: 100%;  
+}
+.nav ul:not(.deroulant){
+    width: 100%;
+    padding-left : 0;
+    display: flex;
+    justify-content: space-around;
+}
+/* MENU DEROULANT  */
+.deroulant {
+    padding: 1em 0;
+    display: flex;
+    height: auto;
+    display: none;
+}
+.deroulant li {
+    padding: 1em;
+    margin: 0;
+}
+.nav > ul li:hover .deroulant{
+    display: block;
+}
+footer {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    padding: 2rem;
+    background-color: whitesmoke;
+}
+footer a {
+    padding: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: SLIDER :::::::::::::::::::::::::::::::::::::::::::::::: */
+div.slider { 
+    width: 98%; 
+    max-width: 1000px; 
+    height: 50vh;
+    overflow: hidden;
+    margin: auto;
+} 
+div.slider figure {
+    position: relative; 
+    width: 500%;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    text-align: left; 
+    animation: 30s slidy infinite;
+}
+div.slider figure img { 
+    width: 20%; 
+    height: auto; 
+    float: left; 
+    overflow: hidden;
+
+}
+@keyframes slidy {
+    0% { left: 0%; }
+    20% { left: 0%; }
+    25% { left: -100%; }
+    45% { left: -100%; }
+    50% { left: -200%; }
+    70% { left: -200%; }
+    75% { left: -300%; }
+    95% { left: -300%; }
+    100% { left: -400%; }
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ERRORS :::::::::::::::::::::::::::::::::::::::::::::::: */
+.section-error404 img {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE PRODUCTS :::::::::::::::::::::::::::::::::::::::::::::::: */
+.products h2 {
+    text-align: center;
+    flex-basis: 100%;
+}
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    margin : auto;
+}
+.products div {
+    width: 15vw;
+    height: max-content;
+    padding: 2rem;
+    /* margin: 1rem auto; */
+}
+.products div img {
+    width: auto;
+    height: 25vh;
+    display: block;
+    margin: auto;
+    /* background-color: blue; */
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ADMIN :::::::::::::::::::::::::::::::::::::::::::::::: */
+.administration  {
+    margin-left: 15vw;
+    text-align: center;
+}
+.nav-admin {
+    background-color: whitesmoke;
+    width: 15vw;
+    height: 100vh;
+    /* position: fixed;
+    z-index: 0;
+    top : 0; */
+}
+.nav-admin ul {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav-admin li {
+    margin: 1rem;
+    text-align: center;
+}
+table {
+    display: table;
+    border-collapse: collapse; 
+    font-size: small;
+    margin: 1rem auto;
+}
+thead th {
+    width: 10em;
+    background-color: #131413;
+    color: white;
+    padding: 1em 0;
+}
+thead td {
+    background-color: #131413;
+    color: white;
+}
+th, td {
+    border : 2px solid #1d1801;
+    border-collapse: collapse; 
+    text-align: center;
+}
+td {
+    padding: 0.7em 1em;
+}
+tbody th {
+    font-family: cursive;
+    padding: 1em;
+    background-color: #131413;
+    color: white;
+}
+/* tbody td {
+    font-size: 1.3em;
+} */
+
+/*============================================== AFFICHAGE produit front Admin  ========================================*/
+.productAdmin {
+    /* overflow-x: scroll; */
+}
+.productAdmin thead th:nth-child(1) {
+    width: 15%;
+}
+.productAdmin thead th:nth-child(2) {
+    width: 20%;
+}
+.productAdmin thead th:nth-child(3)  {
+    width: 10%;
+}
+.productAdmin thead th:nth-child(11), .productAdmin thead th:nth-child(12)  {
+    width: 5%;
+}
+
+.productAdmin table {
+    margin : 1rem 1rem;
+}
+
+/*============================================== AFFICHAGE CATEGORIE front Admin  ========================================*/
+.category td:nth-child(1) {
+    background-color: gray;
+    color: white;
+}
+.category th:nth-child(1) {
+    background-color: rgb(44, 42, 42);
+    color: white;
+}
+
+/*============================================== FORMULAIRE produit Admin  ========================================*/
+.form-product form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+.form-product select {
+    width: 6rem;
+}
+.form-product fieldset {
+    margin: 2px;
+}
+.form-product fieldset:nth-child(1) {
+    flex-basis: 50%;
+}
+.form-product fieldset:first-child label {
+    display: block;
+}
+.form-product fieldset:first-child input {
+    width: 90%;
+    display: block;
+}
+form textarea {
+    width: 90%;
+    height: 5rem;
+    margin: 1rem auto;
+}
+.form-product fieldset:nth-child(2){
+    flex-basis: 40%;
+}
+.form-product fieldset:nth-child(3){
+    flex-basis: 90%;
+}
+
+
+/* ////////////////////////////////////// FORMAT GRAND ECRAN /////////////////////// */
+@media screen and (min-width: 768px){
+    footer {
+        flex-direction: row; 
+        justify-content: space-evenly;
+
+    }
+}

@@ -1,8 +1,9 @@
 <?php $title = 'Page de connexion'; ?>
-<?php $description = 'Boutique en ligne, page de connexion'; ?>
+<?php $description = 'Boutique en ligne, page de connexion';
+$css = 'public/css/styles.css';
 
-<!-- Début du contenu -->
-<?php ob_start(); ?>
+ob_start(); 
+?>
 
 <section class="section-connexion">
     <h2>Connexion</h2>
