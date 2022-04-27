@@ -45,7 +45,7 @@ try {
         elseif ($_GET['url'] == 'soin') {
             getSoin();
         }
-        elseif ($_GET['url'] == 'produit') {
+        elseif ($_GET['url'] == 'tous-les-produits/produit') {
             getSingleProduct($id);
         } 
         elseif ($_GET['url'] == 'admin') {

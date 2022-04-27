@@ -8,11 +8,17 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
         <link href="public/css/styles.css" rel="stylesheet" /> 
 
-    <?php 
+        <?php 
     if (isset($_GET['url'])) {
-        if($_GET['url'] == 'admin/ajout-categorie') { ?>
+        $val = substr($_GET['url'], 14);
+
+        if($_GET['url'] == 'admin') { ?>
             <link href="../public/css/styles.css" rel="stylesheet" /> <?php
-        } 
+        }
+        elseif($_GET['url'] == "admin/produit/$val") { ?>
+            <link href="../../public/css/styles.css" rel="stylesheet" /> <?php
+
+        }
         else { ?>
             <link href="../public/css/styles.css" rel="stylesheet" /> <?php
         } 
