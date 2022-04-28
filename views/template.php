@@ -34,19 +34,19 @@
             <nav class="nav">
                 <!-- <h1><a href="/projectpool2/boutique-en-ligne/accueil">My HAIR</a></h1> -->
                 <ul>
-                    <li><a href="/projectpool2/boutique-en-ligne/accueil">My HAIR</a></li>
+                    <li><a href="/plateforme/boutique-en-ligne/accueil">My HAIR</a></li>
                     <li><a href="">Cheveux +</a>
                         <ul class="deroulant"> 
-                            <li><a href="/projectpool2/boutique-en-ligne/cheveux-raides">Cheveux raides</a></li>
-                            <li><a href="/projectpool2/boutique-en-ligne/cheveux-boucles">Cheveux bouclés</a></li>
-                            <li><a href="/projectpool2/boutique-en-ligne/cheveux-frises">Cheveux crépus</a></li>                            
+                            <li><a href="/plateforme/boutique-en-ligne/cheveux-raides">Cheveux raides</a></li>
+                            <li><a href="/plateforme/boutique-en-ligne/cheveux-boucles">Cheveux bouclés</a></li>
+                            <li><a href="/plateforme/boutique-en-ligne/cheveux-frises">Cheveux crépus</a></li>                            
                         </ul>
                     </li>
                     <li><a href="/projectpool2/boutique-en-ligne/tous-les-produits">Produits +</a>
                         <ul class="deroulant"> 
-                            <li><a href="/projectpool2/boutique-en-ligne/shampoing">Shampoing</a></li>
-                            <li><a href="/projectpool2/boutique-en-ligne/apres-shampoing">Aprés-shampoing</a></li>
-                            <li><a href="/projectpool2/boutique-en-ligne/soin">Soin</a></li>                            
+                            <li><a href="/plateforme/boutique-en-ligne/shampoing">Shampoing</a></li>
+                            <li><a href="/plateforme/boutique-en-ligne/apres-shampoing">Aprés-shampoing</a></li>
+                            <li><a href="/plateforme/boutique-en-ligne/soin">Soin</a></li>                            
                         </ul>
                     </li>
                     <li><a href="/projectpool2/boutique-en-ligne/nouveaute">Nouveauté</a></li>
