@@ -9,10 +9,8 @@ ob_start();
         <thead> <!-- En-tête du tableau -->
             <tr>
                 <th>Sous-catégorie </th>
-                <th>Catégorie liée</th>
-                <th>Catégorie liée</th>
-                <th>Catégorie liée</th>
-                <th>Catégorie liée</th>
+                <th>Catégorie liée</th>          
+                <th></th>
             </tr>
         </thead>
 
@@ -22,9 +20,9 @@ ob_start();
             <tr>
                 <td> <?= htmlspecialchars($resSubCat['nom_du_produit'])?> </td>
 
-                <?php foreach($resCat as $value) { ?>
-                <td> <?= htmlspecialchars($value['type_de_cheveux'])?> </td>
-                <?php } ?>
+                <td><a href="./produit/modifier/"><img src="../public/img/update.svg" alt="Modifier"><a></td>
+
+                <td><a href="./produit/supprimer/"><img src="../public/img/delete.svg" alt="Supprimer"><a></td>
             </tr>
         <?php } ?>
         </tbody>

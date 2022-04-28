@@ -33,7 +33,7 @@
         <input type="text" value="<?= $_SESSION['user']['nom'] ?>" id="nom" name="nom"require pattern="^[a-zA-Z'-]+$">
 
         <label for="nouveauMail">Adresse Mail:</label>
-        <input type="text"  value="<?= $_SESSION['user']['mail'] ?>" id="nouveauMail" name="nouveauMail"
+        <input type="email"  value="<?= $_SESSION['user']['mail'] ?>" id="nouveauMail" name="nouveauMail"
                 require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
 
         <?php if (isset($_SESSION['id-admin'])) { ?>
@@ -55,7 +55,7 @@
         <input type="text" id="nom" name="nom" require pattern="^[a-zA-Z'-]+$">
 
         <label for="nouveauMail">Adresse Mail:</label>
-        <input type="text" id="nouveauMail" name="nouveauMail"
+        <input type="email" id="nouveauMail" name="nouveauMail"
                 require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
 
         <input type="submit"  name="modifier" id="button" value="Enregistrer">

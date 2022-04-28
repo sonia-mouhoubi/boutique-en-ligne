@@ -1,19 +1,19 @@
 <?php
 session_start();
-// $val = substr($_GET['url'], 14);
-
-// define()
 
 require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
-// var_dump($_SERVER);
 try {
-    $val = substr($_GET['url'], 14);
- 
-    // $_GET['url'] = '';
     if (isset($_GET['url'])) {
+        $val1 = substr($_GET['url'], 23);
+        $val2 = substr($_GET['url'], 24);
+        $idSingleProductFront = substr($_GET['url'],18);
+
+        // var_dump( $val1);
+        var_dump($idSingleProductFront);
+
         if ($_GET['url'] == 'accueil') {
-            require('views/homeView.php');
+            homeView();
         }
         elseif ($_GET['url'] == 'inscription') {
             registerUser();
@@ -26,6 +26,9 @@ try {
         // }
         elseif ($_GET['url'] == 'tous-les-produits') {
             total_number_articles();
+        }
+        elseif ($_GET['url'] == "tous-les-produits/$idSingleProductFront") {
+            getSingleProduct();
         }
         elseif ($_GET['url'] == 'cheveux-raides'){
             getProductsStraight();
@@ -48,6 +51,7 @@ try {
         elseif ($_GET['url'] == "tous-les-produits/$val") {
             getSingleProduct($id);
         } 
+
         elseif ($_GET['url'] == 'admin') {
             getAdmin();
         }  
@@ -69,11 +73,15 @@ try {
         elseif ($_GET['url'] == 'admin/sous-categorie') {
             getSubCategory();
         }
-        // elseif ($_GET['url'] == 'admin/client') {
-        //     getUserAdmin();
-        // } 
-        elseif ($_GET['url'] == "admin/produit/$val") {
+
+        elseif ($_GET['url'] == 'admin/client') {
+            getUserAdmin();
+        } 
+        elseif ($_GET['url'] == "admin/produit/modifier/$val1") {
             updateProduct();
+        }
+        elseif ($_GET['url'] == "admin/produit/supprimer/$val2") {
+            deleteProduct();
         }
         else {
             require('views/error404.php');

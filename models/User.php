@@ -11,9 +11,6 @@ class User extends Bdd {
 
 
     // Fonction pour enregistrer un nouvel utilisateur
-    public function home() {
-        echo 'salut';
-    }
 
     public function register($prenom, $nom, $mail, $password) {   
         $this->prenom = $prenom;
@@ -40,7 +37,6 @@ class User extends Bdd {
         return $result;
     }
 
-
     public function connectUser($mail, $password){
         $this->mail = $mail;
         $this->password = $password;
@@ -54,9 +50,18 @@ class User extends Bdd {
         return $result;
     }
 
-    
     public function profileUser(){
        
+    }
+
+    public function getUserAdmin() 
+    {
+        $req = $this->db->prepare("SELECT * FROM `client` INNER JOIN droits ON client.id_droits = droits.id_droits
+        ");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC);   
+
+        return $res;
     }
 }
 ?>

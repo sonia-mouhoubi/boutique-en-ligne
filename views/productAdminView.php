@@ -37,12 +37,6 @@ ob_start();
             </select><br>
         </fieldset>
         <fieldset>
-            <label for="formats">Format</label>
-            <select name="formats" required>
-                <option value="Grand">Grand</option>
-                <option value="Mini">Mini</option>
-            </select><br>
-
             <label for="priceHT">Prix HT</label>
             <input type="text" id="priceHT" name="priceHT" placeholder="Prix HT">
 

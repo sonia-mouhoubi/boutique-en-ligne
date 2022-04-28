@@ -1,12 +1,16 @@
 /* ::::::::::::::::::::::::::::::::::::::::::::::: CSS PAR DEFAUT :::::::::::::::::::::::::::::::::::::::::::::::: */
 * {
 	box-sizing : border-box;
+    /* scrollbar-color: transparent transparent; thumb and track color */
+    /* scrollbar-width: 0px; */
 }
 body {
     scroll-behavior: smooth;
     line-height: 1.15;
 	margin : 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
 }
 main {
     min-height: 90vh;
@@ -24,12 +28,21 @@ ul {
     margin: 0;
     padding: 0;
 }
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+} 
 li {
     list-style: none;
 }
-h1, h2, h3, h4, h5 {
+h2, h3, h4, h5 {
     padding: 1rem;
     text-align: center;
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 0.90rem;
 }
 form {
     width: 90%;
@@ -59,18 +72,35 @@ form input[type="submit"] {
     padding: 0.5rem;   
     border-radius: 25px; 
 }
-
 form select {
     margin: 0.5rem;
 }
 
-/* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE HEADER :::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE :::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::: USEFUL INFOS ::::::::::::: */
+.useful-infos {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background-color: #e7d0a6;
+    align-items: center;
+}
+.useful-infos p {
+    margin: 0;
+    padding: 0.5rem;
+}
+/* ::::::::::::::::::::::::::::::::::::::::::::::: HEADER ::::::::::::: */
 header {
     position: sticky;
     z-index: 10;
     background-color: whitesmoke;
     padding: 1rem;
     width: 100%;  
+}
+.nav li:first-child a:not(.deroulant a) {
+    color: #edb771;
+    font-size: 1.5rem;
+    font-weight: bolder;
 }
 .nav ul:not(.deroulant){
     width: 100%;
@@ -95,8 +125,69 @@ header {
 footer {
     background-color: whitesmoke;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
     padding: 2rem;
+}
+footer a {
+    padding: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::: ACCUEIL :::::::::::::::: */
+div.slider { 
+    width: 98%; 
+    /* max-width: 1000px;  */
+    height: 30vh;
+    overflow: hidden;
+    margin: auto;
+    overflow: hidden;
+} 
+div.slider figure {
+    position: relative; 
+    width: 500%;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    text-align: left; 
+    animation: 30s slidy infinite;
+    overflow: hidden;
+    height: 30vh;
+}
+div.slider figure img { 
+    width: 20%; 
+    height: auto; 
+    float: left; 
+    overflow: hidden;
+}
+@keyframes slidy {
+    0% { left: 0%; }
+    20% { left: 0%; }
+    25% { left: -100%; }
+    45% { left: -100%; }
+    50% { left: -200%; }
+    70% { left: -200%; }
+    75% { left: -300%; }
+    95% { left: -300%; }
+    100% { left: -400%; }
+}
+
+.newArticles {
+    /* display: flex;
+    flex-direction: column; */
+}
+.newArticles div {
+    width: 90vw;
+    height: max-content;
+    padding: 2rem;
+    margin : auto;
+    text-align: center;
+}
+.newArticles div img {
+    width: auto;
+    height: 25vh;
+    display: block;
+    margin: auto;
 }
 /* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ERRORS :::::::::::::::::::::::::::::::::::::::::::::::: */
 .section-error404 img {
@@ -116,9 +207,11 @@ footer {
     margin : auto;
 }
 .products div {
-    width: 15vw;
+    width: 90vw;
     height: max-content;
     padding: 2rem;
+    margin : auto;
+    text-align: center;
     /* margin: 1rem auto; */
 }
 .products div img {
@@ -188,7 +281,7 @@ tbody th {
 
 /*============================================== AFFICHAGE produit front Admin  ========================================*/
 .productAdmin {
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 .productAdmin thead th:nth-child(1) {
     width: 15%;
@@ -249,4 +342,38 @@ form textarea {
 }
 .form-product fieldset:nth-child(3){
     flex-basis: 90%;
+}
+
+/* ////////////////////////////////////// FORMAT GRAND ECRAN /////////////////////// */
+@media screen and (min-width: 768px){
+     /* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE ::::::::::::: */
+     footer {
+        flex-direction: row; 
+        justify-content: space-evenly;
+    }
+    /* ::::::::::::::::::::::::::::::::::::::::::::::: ACCUEIL :::::::::::::::: */
+    /* ::::: USEFUL INFOS ::::::::::::: */
+    .useful-infos {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    div.slider figure {
+        height: 70vh;
+    }
+    div.slider {
+        min-height: 70vh;
+        width: 90%;
+    }
+     /* ::::  NOUVEL ARRIVAGE ::::::::::::: */
+     .newArticles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .newArticles div {
+        width: 20vw;
+    }
+    .newArticles h2 {
+        flex-basis: 100%;
+    }
 }
