@@ -258,6 +258,3 @@ function total_number_articles(){
         // var_dump($get_page);
     require('views/allProductsView.php');
 }
-
-
-

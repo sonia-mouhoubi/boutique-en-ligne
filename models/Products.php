@@ -153,7 +153,8 @@ class Products extends Category {
         $req = $this->db->prepare("SELECT * FROM produit");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC); 
-
+        // $res = $req->fetchAll(PDO::FETCH_OBJ); 
+        // var_dump($res);
         return $res;
     }
     

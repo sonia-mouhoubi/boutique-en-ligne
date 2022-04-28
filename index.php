@@ -4,7 +4,6 @@ session_start();
 require('controllers/frontEndController.php');
 require('controllers/backEndController.php');
 try {
-
     if (isset($_GET['url'])) {
         $val1 = substr($_GET['url'], 23);
         $val2 = substr($_GET['url'], 24);
@@ -49,7 +48,7 @@ try {
         elseif ($_GET['url'] == 'soin') {
             getSoin();
         }
-        elseif ($_GET['url'] == 'produit') {
+        elseif ($_GET['url'] == "tous-les-produits/$val") {
             getSingleProduct($id);
         } 
 
