@@ -189,6 +189,13 @@ function getSingleProduct($id)
         // var_dump($countArt);
 
         //vérifie si l'article existe bien
+
+
+
+
+
+
+        
         if($countArt == 1)
         {       
             $nomProduit =  $singleProduct['nom_produit'];
