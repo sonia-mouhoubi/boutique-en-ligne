@@ -42,7 +42,7 @@ class Products extends Category {
     } 
 
     public function getProductsfrizzy() {   
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 1");
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 1 ORDER BY `produit`.`id_produit` DESC");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -50,7 +50,7 @@ class Products extends Category {
     } 
 
     public function getProductsStraight() {   
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 2");
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 2 ORDER BY `produit`.`id_produit` DESC");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -59,7 +59,7 @@ class Products extends Category {
 
     public function getProductsCurly() 
     {   
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 3");
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 3 ORDER BY `produit`.`id_produit` DESC");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -138,6 +138,15 @@ class Products extends Category {
 
         return $res;
     } 
+
+    public function allProductsLimit4()
+    {
+        $req = $this->db->prepare("SELECT * FROM produit LIMIT 4");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC); 
+
+        return $res;
+    }
 
      public function allProducts()
     {
@@ -275,7 +284,13 @@ class Products extends Category {
         $this->idProduct = $idProduct;
 
         $req = $this->db->prepare("UPDATE produit SET nom_produit=?,description=?, image=?, prixHT=?, tauxTVA=?, prixTTC=?, formats=?,stock=?, id_categorie=?, id_sous_categorie=? WHERE id_produit = ?");
-        $a = $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct]);
+        $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct]);
+    } 
+    public function deleteProduct($idProduct) { 
+        $this->idProduct = $idProduct;
+
+        $req = $this->db->prepare("DELETE FROM `produit` WHERE id_produit = ?");
+        $req->execute([$idProduct]);
     } 
 }
 ?>

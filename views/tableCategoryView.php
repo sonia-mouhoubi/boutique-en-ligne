@@ -10,8 +10,7 @@ ob_start();
             <tr>
                 <th>Catégorie</th>
                 <th>Sous-catégorie liée</th>
-                <th>Sous-catégorie liée</th>
-                <th>Sous-catégorie liée</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -21,13 +20,14 @@ ob_start();
             <tr>
                 <td> <?= htmlspecialchars($value['type_de_cheveux'])?> </td>
 
-                <?php foreach($resSubCat as $valueSubCat) { ?>
-                <td> <?= htmlspecialchars($valueSubCat['nom_du_produit'])?> </td>
-                <?php } ?>
+                <td><a href="./produit/modifier/"><img src="../public/img/update.svg" alt="Modifier"><a></td>
+
+                <td><a href="./produit/supprimer/"><img src="../public/img/delete.svg" alt="Supprimer"><a></td> 
             </tr>
         <?php } ?>
         </tbody>
-    </table>       
+    </table>  
+         
 </section>
 
 <?php $contentcat = ob_get_clean(); 

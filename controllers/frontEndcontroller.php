@@ -6,7 +6,14 @@ require_once('models/Products.php');
 require_once('utility/fonctions.php');
 
 // Controller INSCRIPTION
- 
+function homeView() 
+{
+    $products = new Products;
+    $res = $products->allProductsLimit4();
+
+    require('views/homeView.php');
+}
+
 function registerUser()
 {
     $user = new User;
@@ -171,19 +178,25 @@ function getSoin()
     require('views/conditionerView.php');
 }
 
-function getSingleProduct($id)
+function getSingleProduct()
 {
     $products = new Products;
+    $idSingleProductFront = substr($_GET['url'], 18);
+
+    $resProduct = $products->getProductByID($idSingleProductFront);
+
+    var_dump($resProduct);
+
     // $singleprod = $products->getSingleProduct($id);
 
-    if(isset($_GET['id']) AND !empty($_GET['id']))
+    if(isset($idSingleProductFront) AND !empty($idSingleProductFront))
     {
-        $getId = htmlspecialchars($_GET['id']);
-        $getId = (int)($_GET['id']);
-        $singleProduct = $products->getSingleProduct($getId);
-        // var_dump($singleProduct);
+        $idSingleProductFront = htmlspecialchars($idSingleProductFront);
+        $idSingleProductFront = (int)($idSingleProductFront);
+        $singleProduct = $products->getSingleProduct($idSingleProductFront);
+        var_dump($idSingleProductFront);
 
-        $countArt  = $products->countSingleProdu($getId);
+        $countArt  = $products->countSingleProdu($idSingleProductFront);
         // var_dump($countArt);
         $countArt = (int)$countArt;
         // var_dump($countArt);
@@ -195,11 +208,7 @@ function getSingleProduct($id)
             $image =  $singleProduct['image'];
             $description =  $singleProduct['description'];
             $prixTTC =  $singleProduct['prixTTC'];
-            $formats =  $singleProduct['formats'];
             $stock =  $singleProduct['stock'];
-            $date =  date_format(date_create($singleProduct['date']), 'd/m/Y H:i:s');
-
-
         } else {
             die("Cet article n'existe pas !");
         }
@@ -219,33 +228,34 @@ function profilUser(){
 //pagination + affichage de tous les produits
 function total_number_articles(){
     $allProducts = new Products;
+
     $products = $allProducts->allProducts();
-    // var_dump($products);
+    var_dump($products);
 
-    // // TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
-    // // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre
-    // // On détermine sur quelle page on se trouve
-    //     if(isset($_GET['page']) && !empty($_GET['page'])){
-    //         $currentPage = (int)($_GET['page']);
-    //     }else{
-    //         $currentPage = 1;
-    //         var_dump($currentPage);
-    //     }
+    // TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
+    // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre
+    // On détermine sur quelle page on se trouve
+        // if(isset($_GET['page']) && !empty($_GET['page'])){
+        //     $currentPage = (int)($_GET['page']);
+        // }else{
+        //     $currentPage = 1;
+        //     var_dump($currentPage);
+        // }
 
-    //     $nbArticles = $allProducts->total_number_articles();
-    //     // var_dump($nbArticles);
+        // $nbArticles = $allProducts->total_number_articles();
+        // // var_dump($nbArticles);
 
-    //     // On détermine le nombre d'articles par page
-    //     $parPage = 2;
+        // // On détermine le nombre d'articles par page
+        // $parPage = 2;
 
-    //     // On calcule le nombre de pages total
-    //     $pages = ceil($nbArticles / $parPage);
+        // // On calcule le nombre de pages total
+        // $pages = ceil($nbArticles / $parPage);
 
-    //     // Calcul du 1er article de la page
-    //     $premier = ($currentPage * $parPage) - $parPage;
-    //     // var_dump($premier);
-    //     $get_page = $allProducts->get_by_page($premier,$parPage);
-    //     var_dump($get_page);
+        // // Calcul du 1er article de la page
+        // $premier = ($currentPage * $parPage) - $parPage;
+        // // var_dump($premier);
+        // $get_page = $allProducts->get_by_page($premier,$parPage);
+        // var_dump($get_page);
     require('views/allProductsView.php');
 }
 

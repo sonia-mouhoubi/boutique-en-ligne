@@ -41,6 +41,9 @@ ob_start();
         elseif(isset($contentupdateproduct)) {
             echo $contentupdateproduct;
         }
+        elseif(isset($contentdeleteproduct)) {
+            echo $contentdeleteproduct;
+        }
         elseif(isset($contentclient)) {
             echo $contentclient;
         }

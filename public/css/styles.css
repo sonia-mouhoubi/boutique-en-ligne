@@ -9,6 +9,8 @@ body {
     line-height: 1.15;
 	margin : 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
 }
 main {
     min-height: 90vh;
@@ -34,9 +36,13 @@ ol {
 li {
     list-style: none;
 }
-h1, h2, h3, h4, h5 {
+h2, h3, h4, h5 {
     padding: 1rem;
     text-align: center;
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 0.90rem;
 }
 form {
     width: 90%;
@@ -70,13 +76,31 @@ form select {
     margin: 0.5rem;
 }
 
-/* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE HEADER :::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE :::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::: USEFUL INFOS ::::::::::::: */
+.useful-infos {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background-color: #e7d0a6;
+    align-items: center;
+}
+.useful-infos p {
+    margin: 0;
+    padding: 0.5rem;
+}
+/* ::::::::::::::::::::::::::::::::::::::::::::::: HEADER ::::::::::::: */
 header {
     position: sticky;
     z-index: 10;
     background-color: whitesmoke;
     padding: 1rem;
     width: 100%;  
+}
+.nav li:first-child a:not(.deroulant a) {
+    color: #edb771;
+    font-size: 1.5rem;
+    font-weight: bolder;
 }
 .nav ul:not(.deroulant){
     width: 100%;
@@ -105,19 +129,19 @@ footer {
     align-items: center;
     /* justify-content: space-evenly; */
     padding: 2rem;
-    background-color: whitesmoke;
 }
 footer a {
     padding: 1rem;
 }
 
-/* ::::::::::::::::::::::::::::::::::::::::::::::: SLIDER :::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::: ACCUEIL :::::::::::::::: */
 div.slider { 
     width: 98%; 
-    max-width: 1000px; 
-    height: 50vh;
+    /* max-width: 1000px;  */
+    height: 30vh;
     overflow: hidden;
     margin: auto;
+    overflow: hidden;
 } 
 div.slider figure {
     position: relative; 
@@ -127,13 +151,14 @@ div.slider figure {
     font-size: 0;
     text-align: left; 
     animation: 30s slidy infinite;
+    overflow: hidden;
+    height: 30vh;
 }
 div.slider figure img { 
     width: 20%; 
     height: auto; 
     float: left; 
     overflow: hidden;
-
 }
 @keyframes slidy {
     0% { left: 0%; }
@@ -147,6 +172,23 @@ div.slider figure img {
     100% { left: -400%; }
 }
 
+.newArticles {
+    /* display: flex;
+    flex-direction: column; */
+}
+.newArticles div {
+    width: 90vw;
+    height: max-content;
+    padding: 2rem;
+    margin : auto;
+    text-align: center;
+}
+.newArticles div img {
+    width: auto;
+    height: 25vh;
+    display: block;
+    margin: auto;
+}
 /* ::::::::::::::::::::::::::::::::::::::::::::::: PAGE ERRORS :::::::::::::::::::::::::::::::::::::::::::::::: */
 .section-error404 img {
     display: block;
@@ -165,9 +207,11 @@ div.slider figure img {
     margin : auto;
 }
 .products div {
-    width: 15vw;
+    width: 90vw;
     height: max-content;
     padding: 2rem;
+    margin : auto;
+    text-align: center;
     /* margin: 1rem auto; */
 }
 .products div img {
@@ -187,9 +231,9 @@ div.slider figure img {
     background-color: whitesmoke;
     width: 15vw;
     height: 100vh;
-    /* position: fixed;
+    position: fixed;
     z-index: 0;
-    top : 0; */
+    top : 0;
 }
 .nav-admin ul {
     height: 100vh;
@@ -300,12 +344,36 @@ form textarea {
     flex-basis: 90%;
 }
 
-
 /* ////////////////////////////////////// FORMAT GRAND ECRAN /////////////////////// */
 @media screen and (min-width: 768px){
-    footer {
+     /* ::::::::::::::::::::::::::::::::::::::::::::::: TEMPLATE ::::::::::::: */
+     footer {
         flex-direction: row; 
         justify-content: space-evenly;
-
+    }
+    /* ::::::::::::::::::::::::::::::::::::::::::::::: ACCUEIL :::::::::::::::: */
+    /* ::::: USEFUL INFOS ::::::::::::: */
+    .useful-infos {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    div.slider figure {
+        height: 70vh;
+    }
+    div.slider {
+        min-height: 70vh;
+        width: 90%;
+    }
+     /* ::::  NOUVEL ARRIVAGE ::::::::::::: */
+     .newArticles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .newArticles div {
+        width: 20vw;
+    }
+    .newArticles h2 {
+        flex-basis: 100%;
     }
 }
