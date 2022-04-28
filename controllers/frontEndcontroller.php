@@ -212,7 +212,7 @@ function getSingleProduct($id)
 }
 
 function profilUser(){
-    $profilUser = new User;
+    $profilUser = new User; 
     require('views/profileView.php');
 }
 
@@ -224,6 +224,44 @@ function total_number_articles(){
 
     //TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
     // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre
+     // On détermine sur quelle page on se trouve
+ if(isset($_GET['page']) && !empty($_GET['page'])){
+    $currentPage = (int)($_GET['page']);
+}else{
+    $currentPage = 1;
+    // var_dump($currentPage); 
+}
+
+$nbArticles = $allProducts->total_number_articles();
+// var_dump($nbArticles);
+
+// On détermine le nombre d'articles par page
+$parPage = 6;
+
+// On calcule le nombre de pages total
+$pages = ceil($nbArticles / $parPage);
+
+// Calcul du 1er article de la page
+$premier = ($currentPage * $parPage) - $parPage;
+// var_dump($premier);
+$get_page = $allProducts->get_by_page($premier,$parPage);
+// var_dump($get_page);
+
+
+
+// $nbArticles = $allProducts->total_number_articles();
+// // var_dump($nbArticles);
+
+// // On détermine le nombre d'articles par page
+// $parPage = 2;
+// // On calcule le nombre de pages total
+// $pages = ceil($nbArticles / $parPage);
+
+// // Calcul du 1er article de la page
+// $premier = ($currentPage * $parPage) - $parPage;
+// // var_dump($premier);
+// $get_page = $allProducts->get_by_page($premier,$parPage);
+// var_dump($get_page);
    
     require('views/allProductsView.php');
 }

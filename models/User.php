@@ -49,6 +49,7 @@ class User extends Bdd {
         $req->debugDumpParams();
         $req->execute(['mail'=>$mail]);
         $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($_SESSION);
 
         return $result;
     }

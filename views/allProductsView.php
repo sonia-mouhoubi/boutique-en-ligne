@@ -5,44 +5,7 @@ $css = 'public/css/styles.css';
 
 ob_start(); 
 
- // On détermine sur quelle page on se trouve
- if(isset($_GET['page']) && !empty($_GET['page'])){
-    $currentPage = (int)($_GET['page']);
-}else{
-    $currentPage = 1;
-    // var_dump($currentPage);
-}
 
-$nbArticles = $allProducts->total_number_articles();
-// var_dump($nbArticles);
-
-// On détermine le nombre d'articles par page
-$parPage = 6;
-
-// On calcule le nombre de pages total
-$pages = ceil($nbArticles / $parPage);
-
-// Calcul du 1er article de la page
-$premier = ($currentPage * $parPage) - $parPage;
-// var_dump($premier);
-$get_page = $allProducts->get_by_page($premier,$parPage);
-// var_dump($get_page);
-
-
-
-// $nbArticles = $allProducts->total_number_articles();
-// // var_dump($nbArticles);
-
-// // On détermine le nombre d'articles par page
-// $parPage = 2;
-// // On calcule le nombre de pages total
-// $pages = ceil($nbArticles / $parPage);
-
-// // Calcul du 1er article de la page
-// $premier = ($currentPage * $parPage) - $parPage;
-// // var_dump($premier);
-// $get_page = $allProducts->get_by_page($premier,$parPage);
-// var_dump($get_page);
 
 ?>
 

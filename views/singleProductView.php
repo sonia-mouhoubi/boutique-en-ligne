@@ -15,7 +15,7 @@ ob_start();
         <h3><?= $description ?></h3>
         <p><?= $description ?></p>
         <p><?= $date ?></p>
-
+ 
         <form class="products" action="">
             <p><span>Prix TTC </span><?= $prixTTC ?> €</p>
             <select name="format">

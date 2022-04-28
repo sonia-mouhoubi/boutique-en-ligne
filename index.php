@@ -9,7 +9,7 @@ require('controllers/backEndController.php');
 // var_dump($_SERVER);
 try {
     $val = substr($_GET['url'], 14);
-
+ 
     // $_GET['url'] = '';
     if (isset($_GET['url'])) {
         if ($_GET['url'] == 'accueil') {
@@ -45,7 +45,7 @@ try {
         elseif ($_GET['url'] == 'soin') {
             getSoin();
         }
-        elseif ($_GET['url'] == 'tous-les-produits/produit') {
+        elseif ($_GET['url'] == "tous-les-produits/$val") {
             getSingleProduct($id);
         } 
         elseif ($_GET['url'] == 'admin') {
