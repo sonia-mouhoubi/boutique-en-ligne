@@ -5,7 +5,7 @@
 require_once('Category.php');
 
  
-class Products extends Category {
+class Products extends Category { 
     private $idProduct;
     private $nameProduct;
     private $description;
@@ -19,6 +19,7 @@ class Products extends Category {
     private $idSubCategory;
     private $first;
     private $bypage;
+    private $search;
 
     // public function __construct() {
        
@@ -109,6 +110,21 @@ class Products extends Category {
 
         return $countArt;
 
+    }
+
+    public function searchReq($search)
+    {
+        $this->search = $search;
+
+        // $allproduits = $this->db->prepare("SELECT nom_produit FROM produit WHERE nom_produit LIKE '%".$search."%' ORDER BY id_produit DESC");
+        $allproduits = $this->db->prepare("SELECT * FROM produit WHERE nom_produit LIKE '%".$search."%'");
+
+        
+        $allproduits->execute([$search]);
+        $result = $allproduits->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($result);
+
+        return $result;
     }
     
 
