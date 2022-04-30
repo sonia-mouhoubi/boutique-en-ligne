@@ -7,35 +7,34 @@ ob_start();
 ?>
 
 <section class="section-inscription">
+        <h2>Inscription</h2>
 
-    <form class="form" action="" method="post">
-        <label for="prenom">Prenom</label>
-        <input type="text" id="prenom" name="prenom"
-                require pattern="^[a-zA-Z'-]+$" maxlength="20">
+        <form class="form" action="" method="post">
+                <label for="firstName">Prenom</label>
+                <input type="text" id="firstName" name="prenom"  placeholder="Votre Prenom"
+                        require pattern="^[a-zA-Z'-]+$" maxlength="20">
 
-                
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom"
-                require pattern="^[a-zA-Z'-]+$">
-
-
-        <label for="mail">Adresse Mail</label>
-        <input type="email" id="mail" name="mail"
-                require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
+                        
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="nom" placeholder="Nom"
+                        require pattern="^[a-zA-Z'-]+$">
 
 
-        <label for="password">Mot de passe</label>
-        <input type="password" id="mot_de_passe" name="password" minlength="4" maxlength="8" required>
-                
+                <label for="mail">Adresse Mail</label>
+                <input type="email" id="mail" name="mail" placeholder="Votre Adresse mail"
+                        require pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
 
-        <label for="password2">Confirmation du Mot de passe</label>
-        <input type="password" id="password2" name="password2">
-   
-        <input type="submit" id="button" name="button" value="inscription">
-    </form>
-            <?php //$user->error()?>
-</section>
 
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="mot_de_passe" placeholder="Mot de passe" 
+                        minlength="4" maxlength="8" required>
+                        
+
+                <label for="password2">Confirmation du Mot de passe</label>
+                <input type="password" id="password2" name="confirMdp2" placeholder="Confirmer le Mot de passe">
+
+                <input type="submit" id="button" name="register" value="inscription">
+        </form>
 
 
 

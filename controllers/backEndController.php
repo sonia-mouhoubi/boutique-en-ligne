@@ -119,7 +119,7 @@ function getUserAdmin() {
 function getProduct() {
     $products = new Products;
     $res = $products->getProduct();
-
+    
     require('views/tableProductView.php');
 }
 
@@ -145,9 +145,9 @@ function getSubCategory() {
 function updateProduct() {
     $products = new Products;
     $category = new Category;
-    $val = substr($_GET['url'], 14);
+    $val1 = substr($_GET['url'], 23);
     // Permet d'afficher la fiche produit
-    $resProduct = $products->getProductByID($val);
+    $resProduct = $products->getProductByID($val1);
     $resCat = $category->getCategory();
     $resSubCat = $category->getSubCategory();
 
@@ -199,16 +199,31 @@ function updateProduct() {
 
                 // $idProduct = $resProduct['id_produit'];
                 // Modification du produit
-                $products->updateProduct($_POST['nameProduct'], $_POST['description'], $image, $_POST['priceHT'], $_POST['TVA'], $_POST['priceTTC'], $_POST['formats'], $_POST['stock'], $_POST['idCategory'], $_POST['idSubCategory'], $val);  
+                $products->updateProduct($_POST['nameProduct'], $_POST['description'], $image, $_POST['priceHT'], $_POST['TVA'], $_POST['priceTTC'], $_POST['formats'], $_POST['stock'], $_POST['idCategory'], $_POST['idSubCategory'], $val1);  
                 $b = $products;
                 var_dump($b);
-                $_SESSION['msg'] = "<p>Produits enregistrés.</p>"; 
+                $_SESSION['msg'] = "<p>Produit modifié.</p>"; 
                 header("Refresh:0");
             }
         }
     }
     require('views/formUpdateProductView.php');
- 
+}
+
+function deleteProduct() {
+    $products = new Products;
+    // $resDeleteProduct = $products->getProductByID($val2);
+
+    if(!empty($_POST['delete'])) {
+        $val2 = substr($_GET['url'], 24);
+
+        $products->deleteProduct($val2);
+        $url = '../../produit';
+        header("Location: " . $url, true, 303);
+    }
+    $_SESSION['msg'] = "<p>Produit supprimé.</p>";
+
+    require('views/formDeleteProductView.php');
 }
 
 

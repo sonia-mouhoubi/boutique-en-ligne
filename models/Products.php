@@ -5,7 +5,7 @@
 require_once('Category.php');
 
  
-class Products extends Category {
+class Products extends Category { 
     private $idProduct;
     private $nameProduct;
     private $description;
@@ -19,6 +19,7 @@ class Products extends Category {
     private $idSubCategory;
     private $first;
     private $bypage;
+    private $search;
 
     // public function __construct() {
        
@@ -42,7 +43,7 @@ class Products extends Category {
     } 
 
     public function getProductsfrizzy() {   
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 1");
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 1 ORDER BY `produit`.`id_produit` DESC");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -50,7 +51,7 @@ class Products extends Category {
     } 
 
     public function getProductsStraight() {   
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 2");
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 2 ORDER BY `produit`.`id_produit` DESC");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -59,7 +60,7 @@ class Products extends Category {
 
     public function getProductsCurly() 
     {   
-        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 3");
+        $req = $this->db->prepare("SELECT * FROM produit WHERE id_categorie = 3 ORDER BY `produit`.`id_produit` DESC");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC);   
 
@@ -110,6 +111,21 @@ class Products extends Category {
         return $countArt;
 
     }
+
+    public function searchReq($search)
+    {
+        $this->search = $search;
+
+        // $allproduits = $this->db->prepare("SELECT nom_produit FROM produit WHERE nom_produit LIKE '%".$search."%' ORDER BY id_produit DESC");
+        $allproduits = $this->db->prepare("SELECT * FROM produit WHERE nom_produit LIKE '%".$search."%'");
+
+        
+        $allproduits->execute([$search]);
+        $result = $allproduits->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($result);
+
+        return $result;
+    }
     
 
     public function getShampoing()
@@ -139,45 +155,91 @@ class Products extends Category {
         return $res;
     } 
 
-     public function allProducts()
+    public function allProductsLimit4()
     {
-        $req = $this->db->prepare("SELECT * FROM produit");
+        $req = $this->db->prepare("SELECT * FROM produit LIMIT 4");
         $req->execute();
         $res = $req->fetchAll(PDO::FETCH_ASSOC); 
 
         return $res;
     }
+
+     public function allProducts()
+    {
+        $req = $this->db->prepare("SELECT * FROM produit");
+        $req->execute();
+        $res = $req->fetchAll(PDO::FETCH_ASSOC); 
+        // $res = $req->fetchAll(PDO::FETCH_OBJ); 
+        // var_dump($res);
+        return $res;
+    }
     
+    // //(1/2) On détermine le nombre total d'articles 
+    // public function total_number_articles()
+    // {
+    //     // On détermine le nombre total d'articles
+    //     $sql = 'SELECT COUNT(*) AS nb_articles FROM `produit`;';
+    //     // On prépare la requête
+    //     $query = $this->db->prepare($sql);
+    //     // On exécute
+    //     $query->execute();
+    //     // On récupère le nombre d'articles
+    //     $result = $query->fetch();
+    //     //var_dump($result); //OK fonctionne mais problème lors de l'attribution en int
+    //     $nbArticles = intval($result['nb_articles']) ;
+    //     // var_dump($nbArticles);
+
+    //     return $nbArticles;
+    // }
+    // //(2/2)le nombre d'articles par page 
+    // public function get_by_page($first, $bypage)
+    // {
+    //     $this->first = $first;      
+    //     $this->bypage = $bypage;      
+
+    //     $sql = "SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT  $first, $bypage";
+    //     // On prépare la requête
+    //     $query = $this->db->prepare($sql);
+    //     // On exécute
+    //     $query->execute([$first, $bypage]);
+    //     // On récupère les valeurs dans un tableau associatif
+    //     $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+    //     // var_dump($articles);
+
+    //     return $articles;
+    // }
+
+    //==>PAGE ARTICLES.PHP ==> PAGINATION
     //(1/2) On détermine le nombre total d'articles 
     public function total_number_articles()
     {
         // On détermine le nombre total d'articles
-        $sql = 'SELECT COUNT(*) AS nb_articles FROM `produit`;';
+        $sql = 'SELECT COUNT(*) FROM `produit`;';
         // On prépare la requête
-        $query = $this->db->prepare($sql);
+        $request = $this->db->prepare($sql);
         // On exécute
-        $query->execute();
+        $request->execute();
         // On récupère le nombre d'articles
-        $result = $query->fetch();
+        $result = $request->fetch();
         //var_dump($result); //OK fonctionne mais problème lors de l'attribution en int
-        $nbArticles = intval($result['nb_articles']) ;
+        $nbArticles = intval($result);
         // var_dump($nbArticles);
 
         return $nbArticles;
     }
-    //(2/2)le nombre d'articles par page 
+    //==>PAGE ARTICLES.PHP  ==> PAGINATION
+        //(2/2)le nombre d'articles par page 
     public function get_by_page($first, $bypage)
     {
-        $this->first = $first;      
-        $this->bypage = $bypage;      
-
-        $sql = "SELECT * FROM `produit` ORDER BY `id_produit` ASC LIMIT  $first, $bypage";
+        $sql = 'SELECT * FROM `produit` ORDER BY `nom_produit` DESC LIMIT :premier, :parpage;';
         // On prépare la requête
-        $query = $this->db->prepare($sql);
+        $request = $this->db->prepare($sql);
+        $request->bindValue(':premier', $first, PDO::PARAM_INT);
+        $request->bindValue(':parpage', $bypage, PDO::PARAM_INT);
         // On exécute
-        $query->execute([$first, $bypage]);
+        $request->execute();
         // On récupère les valeurs dans un tableau associatif
-        $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+        $articles = $request->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($articles);
 
         return $articles;
@@ -240,8 +302,8 @@ class Products extends Category {
         $this->description = $description; 
         $this->image = $image;  
         $this->priceHT = $priceHT; 
-        $this->TVA = $TVA;
-        $this->priceTTC = $priceHT;    
+        $this->TVA = $TVA; 
+        $this->priceTTC = $priceHT;
         $this->formats = $formats;         
         $this->stock = $stock;    
         $this->idCategory = $idCategory;    
@@ -275,7 +337,13 @@ class Products extends Category {
         $this->idProduct = $idProduct;
 
         $req = $this->db->prepare("UPDATE produit SET nom_produit=?,description=?, image=?, prixHT=?, tauxTVA=?, prixTTC=?, formats=?,stock=?, id_categorie=?, id_sous_categorie=? WHERE id_produit = ?");
-        $a = $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct]);
+        $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct]);
+    } 
+    public function deleteProduct($idProduct) { 
+        $this->idProduct = $idProduct;
+
+        $req = $this->db->prepare("DELETE FROM `produit` WHERE id_produit = ?");
+        $req->execute([$idProduct]);
     } 
 }
 ?>
