@@ -29,11 +29,11 @@ ob_start();
 
             <label for="idSubCategory">Sous categorie</label>
             <select name="idSubCategory">
-                <?php foreach ($resSubCat as $value) { ?>
-                    <option>
-                        <?= htmlspecialchars($value['nom_du_produit'])?>
-                    </option>
-                <?php } ?>
+            <?php foreach ($resSubCat as $value) { ?>
+                <option>
+                    <?= htmlspecialchars($value['nom_du_produit'])?>
+                </option>
+            <?php } ?>
             </select><br>
         </fieldset>
         <fieldset>

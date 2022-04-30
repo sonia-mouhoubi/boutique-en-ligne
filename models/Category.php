@@ -77,18 +77,19 @@ class Category extends Bdd {
         $req->execute([$newSubcategory]);
     }
 
-   
+    public function deleteCategory($id) { 
+        $this->id = $id;
 
-    // public function getNameCategoryById($idCategory) 
-    // {
-    //     $this->idCategory = $idCategory;
+        $req = $this->db->prepare("DELETE FROM `categorie` WHERE id_categorie = ?");
+        $req->execute([$id]);
+    }
 
-    //     $req = $this->db->prepare("SELECT type_de_cheveux FROM `categorie` WHERE id_categorie = ?");
-    //     $req->execute([$idCategory]);
-    //     $resNameCat = $req->fetchAll(PDO::FETCH_ASSOC);   
+    public function deleteSubCategory($id) { 
+        $this->id = $id;
 
-    //     return $resNameCat;
-    // }
+        $req = $this->db->prepare("DELETE FROM `sous-categorie` WHERE id_sous_categorie = ?");
+        $req->execute([$id]);
+    }
 }
 ?>
 

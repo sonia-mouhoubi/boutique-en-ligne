@@ -12,8 +12,7 @@ ob_start();
         <label for="prenom">Prenom</label>
         <input type="text" id="prenom" name="prenom"
                 require pattern="^[a-zA-Z'-]+$" maxlength="20">
-
-                
+      
         <label for="nom">Nom</label>
         <input type="text" id="nom" name="nom"
                 require pattern="^[a-zA-Z'-]+$">

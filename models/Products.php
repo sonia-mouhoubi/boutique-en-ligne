@@ -111,7 +111,6 @@ class Products extends Category {
 
     }
     
-
     public function getShampoing()
     {   
         $req = $this->db->prepare("SELECT * FROM `produit` WHERE id_sous_categorie = 1");
@@ -228,9 +227,6 @@ class Products extends Category {
         return $articles;
     }
 
-
-
-
     //OK articles.php
     //PAGINATION 1/4
     public function pag_count()
@@ -272,28 +268,23 @@ class Products extends Category {
         $getInfoCat = $req->fetchall();
 
         return $getInfoCat;
-
-      
     }
 
-    
-    
   // ********************************** Enregistrement produit coté BACK ************************
 
-    public function registerProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory) { 
+    public function registerProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $stock, $idCategory, $idSubCategory) { 
         $this->nameProduct = $nameProduct;
         $this->description = $description; 
         $this->image = $image;  
         $this->priceHT = $priceHT; 
         $this->TVA = $TVA; 
         $this->priceTTC = $priceHT;
-        $this->formats = $formats;         
         $this->stock = $stock;    
         $this->idCategory = $idCategory;    
         $this->idSubCategory = $idSubCategory;      
 
-        $req = $this->db->prepare("INSERT INTO produit (nom_produit, description, image, prixHT, tauxTVA, prixTTC, formats, stock, id_categorie, id_sous_categorie) VALUES (:nom_produit, :description, :image, :prixHT, :tauxTVA, :prixTTC, :formats, :stock, :id_categorie, :id_sous_categorie)");
-        $req->execute(['nom_produit'=>$nameProduct, 'description'=>$description, 'image'=>$image, 'prixHT'=>$priceHT, 'tauxTVA'=>$TVA, 'prixTTC'=>$priceTTC, 'formats'=>$formats, 'stock'=>$stock, 'id_categorie'=>$idCategory, 'id_sous_categorie'=>$idSubCategory]);
+        $req = $this->db->prepare("INSERT INTO produit (nom_produit, description, image, prixHT, tauxTVA, prixTTC stock, id_categorie, id_sous_categorie) VALUES (:nom_produit, :description, :image, :prixHT, :tauxTVA, :prixTTC, :stock, :id_categorie, :id_sous_categorie)");
+        $req->execute(['nom_produit'=>$nameProduct, 'description'=>$description, 'image'=>$image, 'prixHT'=>$priceHT, 'tauxTVA'=>$TVA, 'prixTTC'=>$priceTTC, 'stock'=>$stock, 'id_categorie'=>$idCategory, 'id_sous_categorie'=>$idSubCategory]);
     }
 
   // ********************************** Modification du produits*
@@ -304,7 +295,7 @@ class Products extends Category {
     $resProduct = $req->fetch(PDO::FETCH_ASSOC);   
 
     return $resProduct;
-} 
+    } 
 
     public function updateProduct($nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct) { 
         $this->nameProduct = $nameProduct;
@@ -322,6 +313,7 @@ class Products extends Category {
         $req = $this->db->prepare("UPDATE produit SET nom_produit=?,description=?, image=?, prixHT=?, tauxTVA=?, prixTTC=?, formats=?,stock=?, id_categorie=?, id_sous_categorie=? WHERE id_produit = ?");
         $req->execute([$nameProduct, $description, $image, $priceHT, $TVA, $priceTTC, $formats, $stock, $idCategory, $idSubCategory, $idProduct]);
     } 
+    
     public function deleteProduct($idProduct) { 
         $this->idProduct = $idProduct;
 

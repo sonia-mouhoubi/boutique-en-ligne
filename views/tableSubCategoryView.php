@@ -16,13 +16,14 @@ ob_start();
 
         <tbody> <!-- Corps du tableau -->
         <?php 
-            foreach($resSubCat as $resSubCat) { ?>
+            foreach($resSubCat as $value) { 
+                $idSubCat = $value['id_sous_categorie'];?>
             <tr>
-                <td> <?= htmlspecialchars($resSubCat['nom_du_produit'])?> </td>
+                <td> <?= htmlspecialchars($value['nom_du_produit'])?> </td>
 
-                <td><a href="./produit/modifier/"><img src="../public/img/update.svg" alt="Modifier"><a></td>
+                <td><a href="./sous-categorie/modifier/<?= $idSubCat ?>"><img src="../public/img/update.svg" alt="Modifier"><a></td>
 
-                <td><a href="./produit/supprimer/"><img src="../public/img/delete.svg" alt="Supprimer"><a></td>
+                <td><a href="./sous-categorie/supprimer/<?= $idSubCat ?>"><img src="../public/img/delete.svg" alt="Supprimer"><a></td>
             </tr>
         <?php } ?>
         </tbody>

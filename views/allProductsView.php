@@ -5,13 +5,12 @@ $css = 'public/css/styles.css';
 
 ob_start(); 
 ?>
-
 <section class="col-12">
     <h1>Liste des articles</h1>
     <div class="products">
         <h2>Tous les produits</h2>
 
-        <?php foreach ($products as $value){ var_dump($value);?>
+        <?php foreach ($products as $value){ ?>
         <a href="./tous-les-produits/<?= $value['id_produit'] ?>">
             <div>
                 <img src="./public/img/<?= htmlspecialchars($value['image'])?>" alt="Nom du produit">

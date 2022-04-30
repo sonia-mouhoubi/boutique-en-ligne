@@ -78,9 +78,7 @@ function registerUser()
         }  
     }
     require('views/registerView.php');
-}
-
-        
+}     
 
 function connectUser()
 {
@@ -151,7 +149,7 @@ function getProductsCurly()
     $products = new Products;
     $res = $products->getProductsCurly();
     
-    require('views/productsStraightView.php');
+    require('views/productsCurlyView.php');
 }
 
 function getShampoing()
@@ -181,22 +179,21 @@ function getSoin()
 function getSingleProduct()
 {
     $products = new Products;
-    $idSingleProductFront = substr($_GET['url'], 18);
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
 
-    $resProduct = $products->getProductByID($idSingleProductFront);
+    $resProduct = $products->getProductByID($id_url);
 
-    var_dump($resProduct);
 
     // $singleprod = $products->getSingleProduct($id);
 
-    if(isset($idSingleProductFront) AND !empty($idSingleProductFront))
+    if(isset($id_url) AND !empty($id_url))
     {
-        $idSingleProductFront = htmlspecialchars($idSingleProductFront);
-        $idSingleProductFront = (int)($idSingleProductFront);
-        $singleProduct = $products->getSingleProduct($idSingleProductFront);
-        var_dump($idSingleProductFront);
+        $id_url = htmlspecialchars($id_url);
+        $id_url = (int)($id_url);
+        $singleProduct = $products->getSingleProduct($id_url);
 
-        $countArt  = $products->countSingleProdu($idSingleProductFront);
+        $countArt  = $products->countSingleProdu($id_url);
         // var_dump($countArt);
         $countArt = (int)$countArt;
         // var_dump($countArt);
@@ -230,7 +227,6 @@ function total_number_articles(){
     $allProducts = new Products;
 
     $products = $allProducts->allProducts();
-    var_dump($products);
 
     // TROUVER SOLUTION PAGINATION (stagnation des produits par page identique même si page différente)
     // ==> voir fichier standbypagination.php : met au cas o^le temps pour revenir pour le résoudre

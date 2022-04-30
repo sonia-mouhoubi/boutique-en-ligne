@@ -47,6 +47,21 @@ ob_start();
         elseif(isset($contentclient)) {
             echo $contentclient;
         }
+        elseif(isset($contentclientfile)) {
+            echo $contentclientfile;
+        }
+        elseif(isset($contentupdateclient)) {
+            echo $contentupdateclient;
+        }
+        elseif(isset($contentdeleteclient)) {
+            echo $contentdeleteclient;
+        }
+        elseif(isset($contentdeletecategory)) {
+            echo $contentdeletecategory;
+        }
+        elseif(isset($contentdeletesubcategory)) {
+            echo $contentdeletesubcategory;
+        }
     ?>   
 </section>
 

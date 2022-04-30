@@ -1,5 +1,5 @@
 <?php 
-$title = 'Page produits'; 
+$title = 'Page produits cheveux bouclés'; 
 $description = 'Boutique en ligne, shampoing, aprés-shampoing et soins pour tous types de cheveux.'; 
 $css = 'public/css/styles.css';
 

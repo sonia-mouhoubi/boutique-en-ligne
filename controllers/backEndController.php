@@ -116,6 +116,17 @@ function getUserAdmin() {
     require('views/tableUserAdminView.php');
 }
 
+function getUserAdminByID() {
+    $user = new User;
+    // $idClient = substr($_GET['url'], 26);
+    $url = explode("/",$_GET['url']);
+    $url = end($url);
+    $resClient = $user->getUserAdminByID($url);
+    $resDelivry = $user->getDeliveryAdminByID($url);
+
+    require('views/tableUserAdminByIdView.php');
+}
+
 function getProduct() {
     $products = new Products;
     $res = $products->getProduct();
@@ -126,28 +137,50 @@ function getProduct() {
 function getCategory() {
     $category = new Category;
     $resCat = $category->getCategory();
-    $resSubCat = $category->getCategorySubCategory();
 
     require('views/tableCategoryView.php');
 }
 
 function getSubCategory() {
     $category = new Category;
-    $resSubCat = $category->getCategorySubCategory();
-    // $resSubCat = $category->getSubCategory();
- 
-    $resCat = $category->getCategory();
+    $resSubCat = $category->getSubCategory();
+
     require('views/tableSubCategoryView.php');
 }
 
 // ********************* Modifications produits, catégories, sous-catégories *******************
 
+function updateUserByAdmin() {
+    $user = new User;
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
+    $resClient = $user->getUserAdminByID($id_url);
+    $resDelivry = $user->getDeliveryAdminByID($id_url);
+
+    if(isset($_POST['update']))
+    {
+        if(!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']))
+        {
+            // Modification du produit
+            $user->updateUser($_POST['prenom'], $_POST['nom'], $_POST['mail'], $id_url);  
+            $b = $user;
+            var_dump($b);
+            $_SESSION['msg'] = "<p>Client modifié.</p>"; 
+            header("Refresh:0");
+        }
+    }
+
+    require('views/formUpdateUserView.php');
+}
+
 function updateProduct() {
     $products = new Products;
     $category = new Category;
-    $val1 = substr($_GET['url'], 23);
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
+
     // Permet d'afficher la fiche produit
-    $resProduct = $products->getProductByID($val1);
+    $resProduct = $products->getProductByID($id_url);
     $resCat = $category->getCategory();
     $resSubCat = $category->getSubCategory();
 
@@ -160,7 +193,6 @@ function updateProduct() {
         {
             // throw new Exception('Une erreur est survenue lors du transfert.');
             $_SESSION['msg'] = "Une erreur est survenue lors du transfert.";
-
         }
 
         $fileSize = $_FILES['image']['size'];
@@ -199,7 +231,7 @@ function updateProduct() {
 
                 // $idProduct = $resProduct['id_produit'];
                 // Modification du produit
-                $products->updateProduct($_POST['nameProduct'], $_POST['description'], $image, $_POST['priceHT'], $_POST['TVA'], $_POST['priceTTC'], $_POST['formats'], $_POST['stock'], $_POST['idCategory'], $_POST['idSubCategory'], $val1);  
+                $products->updateProduct($_POST['nameProduct'], $_POST['description'], $image, $_POST['priceHT'], $_POST['TVA'], $_POST['priceTTC'], $_POST['formats'], $_POST['stock'], $_POST['idCategory'], $_POST['idSubCategory'], $id_url);  
                 $b = $products;
                 var_dump($b);
                 $_SESSION['msg'] = "<p>Produit modifié.</p>"; 
@@ -210,14 +242,30 @@ function updateProduct() {
     require('views/formUpdateProductView.php');
 }
 
-function deleteProduct() {
-    $products = new Products;
-    // $resDeleteProduct = $products->getProductByID($val2);
+function deleteUserByAdmin() {
+    $user = new User;
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
 
     if(!empty($_POST['delete'])) {
-        $val2 = substr($_GET['url'], 24);
+       
+        $user->deleteUser($id_url);
+        $url = '../../client';
+        header("Location: " . $url, true, 303);
+    }
+    $_SESSION['msg'] = "<p>Client supprimé.</p>";
 
-        $products->deleteProduct($val2);
+    require('views/formDeleteUserView.php');
+}
+
+function deleteProduct() {
+    $products = new Products;
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
+
+    if(!empty($_POST['delete'])) {
+
+        $products->deleteProduct($id_url);
         $url = '../../produit';
         header("Location: " . $url, true, 303);
     }
@@ -225,6 +273,40 @@ function deleteProduct() {
 
     require('views/formDeleteProductView.php');
 }
+
+function deleteCategory() {
+    $category = new Category;
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
+    var_dump($id_url);
+
+    if(!empty($_POST['delete'])) {
+
+        $category->deleteCategory($id_url);
+        $url = '../../categorie';
+        header("Location: " . $url, true, 303);
+    }
+    $_SESSION['msg'] = "<p>Categorie supprimé.</p>";
+
+    require('views/formDeleteCategoryView.php');
+}
+
+function deleteSubCategory() {
+    $subCategory = new Category;
+    $id_url = explode("/",$_GET['url']);
+    $id_url = end($id_url);
+
+    if(!empty($_POST['delete'])) {
+
+        $subCategory->deleteSubCategory($id_url);
+        $url = '../../sous-categorie';
+        header("Location: " . $url, true, 303);
+    }
+    $_SESSION['msg'] = "<p>Sous-catégorie supprimé.</p>";
+
+    require('views/formDeleteSubCategoryView.php');
+}
+
 
 
 
