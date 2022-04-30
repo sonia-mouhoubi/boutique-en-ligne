@@ -2,7 +2,7 @@
 
 // session_start();
 
-class Bdd {
+class Bdd { 
     protected $db;
 
     public function __construct() {

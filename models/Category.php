@@ -2,7 +2,7 @@
 // session_start();
 
 require_once('Bdd.php');
-
+ 
 class Category extends Bdd {
     private $newCategory;
     private $newSubCategory;
