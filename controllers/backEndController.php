@@ -215,9 +215,9 @@ function deleteProduct() {
     // $resDeleteProduct = $products->getProductByID($val2);
 
     if(!empty($_POST['delete'])) {
-        $val2 = substr($_GET['url'], 24);
+        $idSingleBasket = substr($_GET['url'], 17);
 
-        $products->deleteProduct($val2);
+        $products->deleteProduct($idSingleBasket);
         $url = '../../produit';
         header("Location: " . $url, true, 303);
     }

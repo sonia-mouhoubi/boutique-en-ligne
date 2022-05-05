@@ -24,9 +24,10 @@ ob_start();
 
     <?php foreach ($res as $value) { ?>
     <div>
-        <img src="./public/img/<?= htmlspecialchars($value['image']) ?>" alt="Nom du produit">
+    <a href="./tous-les-produits/<?= $value['id_produit'] ?>"><img src="./public/img/<?= htmlspecialchars($value['image']) ?>" alt="Nom du produit">
         <h3><?= htmlspecialchars($value['nom_produit'])?></h3>
         <p><span>Prix TTC </span><?= htmlspecialchars($value['prixTTC'])?> €</p>
+    </a>
     </div>    
     <?php } ?>
 </section>

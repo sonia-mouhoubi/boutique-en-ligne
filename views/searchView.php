@@ -15,12 +15,16 @@ ob_start();
 
 <section class="afficher_produit"> 
     <?php
+    if(isset($result)){
+
+    
         foreach($result  as $article => $key){ ?>
             <div>
                 <!-- <img src="./public/img/<?= htmlspecialchars($key['image'])?>" alt="Nom du produit"> -->
                 <h3><?= htmlspecialchars($key['nom_produit'])?></h3>
             </div>
-    <?php } ?>  
+    <?php }
+    } ?>  
 </section>
 
 <!-- Fin du contenu qu'on place dans $content -->

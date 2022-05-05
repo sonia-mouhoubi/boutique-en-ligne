@@ -10,6 +10,7 @@ try {
         $val1 = substr($_GET['url'], 23);
         $val2 = substr($_GET['url'], 24);
         $idSingleProductFront = substr($_GET['url'],18);
+        $idSingleBasket = substr($_GET['url'],17);
         // $idSearch = substr($_GET['url'],17);
             // var_dump($idSearch);
 
@@ -38,8 +39,14 @@ try {
             getSingleProduct();
         }
         elseif ($_GET['url'] == "panier") {
-            check_session_basket();
+            check_session_basket(); 
         } 
+        // elseif ($_GET['url'] == "panier/$idSingleBasket") {
+        //     check_session_basket();
+        // } 
+        elseif ($_GET['url'] == "panier/supprimer/$idSingleBasket") {
+            deleteBasket();
+        }
         elseif ($_GET['url'] == 'cheveux-raides'){
             getProductsStraight();
         }

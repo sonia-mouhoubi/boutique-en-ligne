@@ -67,7 +67,7 @@
                             <input type="submit" name="envoyer">
                         </form> -->
                     </li>
-                    <li><a href="/plateforme/boutique-en-ligne/panier"><img src="../public/img/panier.svg" alt="Panier"></a></li>
+                    <li><a href="/plateforme/boutique-en-ligne/panier"><img src="../public/img/panier.svg" alt="Panier"><?= ' '.$_SESSION['quantite']; ?></a></li>
                 </ul>
             </nav>
         </header>

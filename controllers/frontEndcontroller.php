@@ -253,6 +253,8 @@ function searchBarre()
         
         // return $result;
        
+    } else {
+        echo "";
     }
     require('views/searchView.php');
 
@@ -314,6 +316,8 @@ function getSingleProduct()
 
     $resProduct = $products->getProductByID($idSingleProductFront);
 
+    
+
     // var_dump($resProduct);
 
     // $singleprod = $products->getSingleProduct($id);
@@ -323,7 +327,7 @@ function getSingleProduct()
         $idSingleProductFront = htmlspecialchars($idSingleProductFront);
         $idSingleProductFront = (int)($idSingleProductFront);
         $singleProduct = $products->getSingleProduct($idSingleProductFront);
-        var_dump($idSingleProductFront);
+        // var_dump($singleProduct);
 
         $countArt  = $products->countSingleProdu($idSingleProductFront);
         // var_dump($countArt);
@@ -338,14 +342,18 @@ function getSingleProduct()
             $description =  $singleProduct['description'];
             $prixTTC =  $singleProduct['prixTTC'];
             $stock =  $singleProduct['stock'];
+            $idProd =  $singleProduct['id_produit'];
         } else {
-            die("Cet article n'existe pas !");
-        }
+            echo "Cet article n'existe pas !";
+            // die("Cet article n'existe pas !");
+        } 
+        
 
     } else {
         header('refresh: 1; URL=/plateforme/boutique-en-ligne/profil');
     }
-    
+
+      
     require('views/singleProductView.php');
 }
 
@@ -391,15 +399,121 @@ function check_session_basket(){
 
     $user = new User;
     $infoUsers = $user->getAllInfos($_SESSION);
-    // if(isset($_SESSION['user'])){
-    //     $userinfos = $profilUser->getAllInfos();
-    // }
     var_dump($infoUsers);
 
-    // $basket = new User;
-    // $baskets = $basket->getAllInfos();
+    $basket = new Panier;
+   
+    // var_dump($idProduit);
+    // var_dump($getParamsId[1]);
+    // $idSingleBasket = substr($_GET['id_produit']);
+    // $idSingleBasket = $basket->getVerifProductInPanier($getParamsId);
 
+    // var_dump($_GET);
+    // var_dump($_POST);
+    $id_client = $infoUsers['id_client'];
+
+    $countProdBasket = $basket->countBasket($id_client);
+    // var_dump($countProdBasket);
+
+    $_SESSION['quantite'] = $countProdBasket['quantite'];
+
+    $infDisplayBask = $basket->displayBasketId($id_client);
+    // var_dump($infDisplayBask);
+
+    if(isset($_POST['envoi'])){
+        $id_client = $infoUsers['id_client'];
+
+        // $getParamsId = explode('/', $_GET['url']);
+        // $idProduit = (int)$getParamsId[1];
+        $id_url = explode("/",$_GET['url']);
+        $id_url = end($id_url);
+
+        $quant = (int)strip_tags($_POST['quantite']);
+        $quantite = isset($_POST['quantite'])? $quant  : 1;
+        $addBask = $basket->addBasket( $id_client, $id_url, $quantite);
+    }
+
+   
+
+   
+
+   
+
+    // if(!isset($_SESSION['panier'])){
+    //     $_SESSION['panier'] = [];
+    // }
+    // var_dump($_SESSION['panier']);
+
+    // // if(isset$_POST[]){}
+    // if(isset($_GET['id'])){
+    //     //vérification si le produit existe bien
+    //     $basket = new Panier;
+    //     // var_dump($_GET);
+    //     $idSingleBasket = substr($_GET['url'], 7);
+    //     // var_dump($_GET['url'], 7);
+    //     // $idSingleBasket = substr($_GET['id_produit']);
+    //     // $resBasket = $basket->getVerifProductInPanier($_GET['id_produit']);
+    //     $idSingleBasket = $basket->getVerifProductInPanier($_GET['url'], 7);
+    //     //var_dump($resBasket);
+    //     if(empty($idSingleBasket)){
+    //         die("Ce produit n'existe pas.");
+    //     }
+    // } else {
+    //     die("vous n'avez pas sélectionner de produit à ajouter au panier.");
+    // }
+
+
+   
+    // require('views/allProductsView.php');
     require('views/panierView.php');
 
-
 }
+
+function deleteBasket() {
+    $basket = new Panier;
+    
+    if(!empty($_POST['delete'])) {
+        $idSingleBasket = substr($_GET['url'], 17); 
+
+        // $getParamsId = explode('/', $_GET['url']);
+        // $idPanier = (int)$getParamsId[1];
+        // var_dump($idPanier);
+
+        $basket->deleteBasketIdSingle($idSingleBasket);
+        // var_dump($basket);
+        // $_SESSION['msg'] = "<p>Produit supprimé du panier.</p>";
+        $_SESSION['msg'] = "<p>csefczeqfczeq.</p>";
+
+        $url = '../panier';
+        header("Location: " . $url, true, 303);
+    }
+    $_SESSION['msg'] = "<p>Produit supprimé du panier.</p>";
+
+
+
+
+    require('views/formDeleteBasketView.php');
+}
+
+// function check_session_basket_id(){
+
+//     $basket = new Panier;
+//     $idSingleBasket = substr(substr($_GET['url'], 18));
+//     // $idSingleBasket = substr($_GET['id_produit']);
+//     $resBasket = $idSingleBasket->getVerifProductInPanier($_GET['id_produit']);
+//     var_dump($resBasket);
+
+
+//     // if(!isset($_SESSION['panier'])){
+//     //     $_SESSION['panier'] = [];
+//     // }
+
+//     // if(isset($_GET['id'])){
+//     //     //vérification si le produit existe bien
+//     // } else {
+//     //     die("vous n'avez pas sélectionner de produit à ajouter au panier.");
+//     // }
+
+//     require('views/panierView.php');
+
+// }

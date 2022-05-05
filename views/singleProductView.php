@@ -14,14 +14,12 @@ ob_start();
     <img src="../public/img/<?= $image ?>" alt="Nom du produit">
     <h3><?= $description ?></h3>
 
-    <form class="products" action="">
+    <form class="products" action=" ../panier/<?= $idProd ?>" method="post">
         <p><span>Prix TTC : </span><?= number_format(htmlspecialchars($prixTTC), 2, ',', ' ') ?> €</p>
-        
-
         <p><br><span>Stock : </span><?= $stock ?></p>
         <br>
-        <input type="number" placeholder="0" name="password">
-        <input type="submit" value="Ajouter au panier">
+        <input type="number" placeholder="1" name="quantite">
+        <input type="submit" name="envoi" value="Ajouter au panier">
     </form>        
 </section>
 
